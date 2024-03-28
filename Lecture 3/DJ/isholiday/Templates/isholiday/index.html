@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello</title>
+        <link href="{% static "isholiday/styles.css" %}" rel="stylesheet">
+    </head>
+    <body>
+        
+        {% if isholiday %}
+            <h1>Yes, It's a Holiday. Stay in Home.</h1>
+            <h1>Occasion: {{dueTo}}</h1>
+        {% else %}
+            <h1>No, It's NOT a Holiday. Go to Work.</h1>
+        {% endif %}
+    </body>
+</html>

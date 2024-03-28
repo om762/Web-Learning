@@ -1,0 +1,39 @@
+{% extends "todo_app/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="{% static 'todo_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'todo_app/add_styles.css' %}">
+{% endblock head %}
+
+{% comment %} Adding new task without django.forms but also with good css {% endcomment %}
+
+{% block body %}
+<div class="container">
+    <a href="{% url 'todo_app:index' %}">View Tasks</a>
+    <h1>Add a Task</h1>
+    <form action="{% url 'todo_app:add' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="task" id="task-input" placeholder="Enter a new task">
+        <br>
+        <input type="submit">
+    </form>
+</div>
+{% endblock body %}
+
+
+{% comment %} {% block body %}
+<div class="container">
+    <a href="{% url 'todo_app:index' %}">View Tasks</a>
+    <h1>Add a Task</h1>
+    <form action="{% url 'todo_app:add' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <input type="submit">
+    </form>
+</div>
+{% endblock body %} {% endcomment %}

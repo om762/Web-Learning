@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    justify-items: center;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Resetting default anchor styles */
+a {
+    text-decoration: none;
+    /* Remove underline by default */
+    color: #007bff;
+    /* Default link color */
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+}
+
+/* Hover effect */
+a:hover {
+    color: #0056b3;
+    /* Darker color on hover */
+}
+
+
+/* Active link style */
+a:active {
+    color: #ff4500;
+    /* Orange color for active links */
+}
+
+/* Focus style for keyboard navigation */
+a:focus {
+    outline: 2px solid #007bff;
+    /* Add focus outline */
+    outline-offset: 2px;
+    /* Offset outline slightly from element */
+}
