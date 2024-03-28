@@ -11,11 +11,21 @@ body {
 }
 
 h1 {
-    color: #1A1110; 
-    background: #FEFEFA; 
+    color: #1A1110;
+    background: #FEFEFA;
     border: 2px solid #6082B6;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+h1:hover {
+    color: #1A1110;
+    background: #dbdbdb;
+    border: 2px solid #41597e;
+    padding: 20px;
+    border-radius: 100px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
 }
