@@ -1,0 +1,152 @@
+id,Date,Day,Holiday,States
+1,2 January 2024,Tuesday,New Year Holiday,Mizoram
+2,2 January 2024,Tuesday,Mannam Jayanti,Kerala
+3,11 January 2024,Thursday,Missionary Day,Mizoram
+4,12 January 2024,Friday,Swami Vivekananda Jayanti,West Bengal
+5,15 January 2024,Monday,Magh Bihu,Assam
+6,15 January 2024,Monday,Makara Sankranti,"Gujarat, Karnataka, Telangana, and Sikkim"
+7,15 January 2024,Monday,Pongal,"Andhra Pradesh, Arunachal Pradesh, Pondicherry, and Tamil Nadu"
+8,16 January 2024,Tuesday,Thiruvalluvar Day,Tamil Nadu
+9,16 January 2024,Tuesday,Kanuma Panduga,Andhra Pradesh
+10,17 January 2024,Wednesday,Guru Gobind Singh Jayanti,"Chandigarh, Haryana, Jammu and Kashmir, Odisha, Punjab, and  Rajasthan"
+11,17 January 2024,Wednesday,Uzhavar Thirunal,Pondicherry and Tamil Nadu
+12,23 January 2024,Tuesday,Netaji Subhas Chandra Bose Jayanti,"Assam, Jharkhand, Odisha, Tripura, and West Bengal"
+13,23 January 2024,Tuesday,Gaan-Ngai,Manipur
+14,25 January 2024,Thursday,Hazrat Ali Jayanti,Uttar Pradesh
+15,25 January 2024,Thursday,State Day,Himachal Pradesh
+16,26 January 2024,Friday,Republic Day,National
+17,10 February 2024,Saturday,Losar,Sikkim
+18,10 February 2024,Saturday,Sonam Losar,Sikkim
+19,14 February 2024,Wednesday,Vasant Panchami,"Haryana, Odisha, Tripura, and West Bengal"
+20,15 February 2024,Thursday,Lui-Ngai-Ni,Manipur
+21,19 February 2024,Monday,Chhatrapati Shivaji Maharaj Jayanti,Maharashtra
+22,20 February 2024,Tuesday,State Day,State Day in Arunachal Pradesh and State Day in Mizoram
+23,24 February 2024,Saturday,Guru Ravidas Jayanti,"Himachal Pradesh, Haryana, Madhya Pradesh, and Punjab"
+24,5 March 204,Tuesday,Panchayatiraj Divas,Odisha
+25,8 March 2024,Friday,Maha Shivaratri,"National except for Andaman and Nicobar Islands, Arunachal Pradesh, Assam, Bihar, Delhi, Goa, Lakshadweep, Manipur, Meghalaya, Mizoram, Nagaland, Pondicherry, Sikkim, Tamil Nadu, and West Bengal"
+26,22 March 2024,Friday,Bihar Day,Bihar
+27,23 March 2024,Saturday,S. Bhagat Singh's Martyrdom Day,Haryana
+28,25 March 2024,Monday,Holi,"National except Karnataka, Kerala, Lakshadweep, Manipur,  Pondicherry, Tamil Nadu, & West Bengal"
+29,25 March 2024,Monday,Doljatra,West Bengal
+30,25 March 2024,Monday,Yaosang,Manipur
+31,26 March 2024,Tuesday,Yaosang 2nd Day,Manipur
+32,29 March 2024,Friday,Good Friday,National except Haryana & Jammu and Kashmir
+33,30 March 2024,Saturday,Easter Saturday,Nagaland
+34,31 March 2024,Sunday,Easter Sunday,Kerala and Nagaland
+35,1 April 2024,Monday,Odisha Day,Odisha
+36,5 April 2024,Friday,Babu Jagjivan Ram Jayanti,Andhra Pradesh and Telangana
+37,5 April 2024,Friday,Jumat-ul-Wida,Jammu Kashmir
+38,7 April 2024,Sunday,Shab-i-Qadr,Jammu and Kashmir
+39,9 April 2024,Tuesday,Gudi Padwa,Maharashtra and Madhya Pradesh
+40,9 April 2024,Tuesday,Telugu New Year,Tamil Nadu
+41,9 April 2024,Tuesday,Ugadi,"Andhra Pradesh, Daman and Diu, Dadra and Nagar Haveli, Goa, Gujarat, Jammu and Kashmir, Karnataka, Rajasthan, and Telangana"
+42,10 April 2024,Wednesday,Idul Fitr,National
+43,11 April 2024,Thursday,Idul Fitr Holiday,Telangana
+44,11 April 2024,Thursday,Sarhul,Jharkhand
+45,13 April 2024,Saturday,Bohag Bihu Holiday,Assam
+46,13 April 2024,Saturday,Maha Vishuba Sankranti,Odisha
+47,13 April 2024,Saturday,Vaisakh,Jammu Kashmir and Punjab
+48,14 April 2024,Sunday,Bengali New Year,Tripura and West Bengal
+49,14 April 2024,Sunday,Bohag Bihu,Arunachal Pradesh and Assam
+50,14 April 2024,Sunday,Cheiraoba,Manipur
+51,14 April 2024,Sunday,Dr Ambedkar Jayanti,"National except Andaman and Nicobar Islands, Arunachal Pradesh, Assam, Chandigarh,  Dadra and Nagar Haveli, Daman and Diu, Delhi, Lakshadweep, Manipur, Meghalaya,  Mizoram, Nagaland and Tripura"
+52,14 April 2024,Sunday,Tamil New Year,Tamil Nadu
+53,14 April 2024,Sunday,Vishu,Kerala
+54,15 April 2024,Monday,Himachal Day,Himachal Pradesh
+55,17 April 2024,Wednesday,Ram Navami,"National apart from Arunachal Pradesh, Assam, Goa, Jharkhand, Karnataka, Kerala, Lakshadweep, Manipur, Meghalaya, Mizoram, Nagaland, Pondicherry, Tamil Nadu, Tripura, and West Bengal"
+56,21 April 2024,Sunday,Garia Puja,Tripura
+57,21 April 2024,Sunday,Mahavir Jayanti,"Chandigarh, Chhattisgarh, Daman and Diu, Delhi, Dadra and Nagar Haveli, Gujarat, Haryana, Jharkhand, Karnataka, Lakshadweep, Maharashtra, Madhya Pradesh, Mizoram, Odisha, Punjab, Rajasthan, Tamil Nadu, and Uttar Pradesh"
+58,1 May 2024,Wednesday,Maharashtra Day,Maharashtra
+59,8 May 2024,Wednesday,Guru Rabindranath Jayanti,Tripura and West Bengal
+60,10 May 2024,Friday,Basava Jayanti,Karnataka
+61,10 May 2024,Friday,Maharshi Parasuram Jayanti,"Gujarat, Himachal Pradesh, Haryana, Madhya Pradesh, Punjab and  Rajasthan"
+62,16 May 2024,Thursday,State Day,Sikkim
+63,23 May 2024,Thursday,Buddha Purnima,"Andaman and Nicobar Islands, Arunachal Pradesh, Assam, Chhattisgarh, Chandigarh, Delhi,  Himachal Pradesh, Jharkhand, Jammu and Kashmir, Maharashtra, Madhya Pradesh, Mizoram,  Odisha, Tripura, Uttarakhand, Uttar Pradesh, and West Bengal"
+64,24 May 2024,Friday,Kazi Nazrul Islam Jayanti,Tripura
+65,9 June 2024,Sunday,Maharana Pratap Jayanti,"Himachal Pradesh, Haryana and Rajasthan"
+66,10 June 2024,Monday,Sri Guru Arjun Dev Ji's Martyrdom Day,Punjab
+67,14 June 2024,Friday,Pahili Raja,Odisha
+68,15 June 2024,Saturday,Raja Sankranti,Odisha
+69,15 June 2024,Saturday,YMA Day,Mizoram
+70,17 June 2024,Monday,Bakrid / Eid al Adha,"National except Arunachal Pradesh, Chandigarh, Dadra and Nagar Haveli, Daman and Diu and Sikkimb"
+71,18 June 2024,Tuesday,Bakrid / Eid al Adha Holiday,Jammu and Kashmir
+72,22 June 2024,Saturday,Sant Guru Kabir Jayanti,"Chhattisgarh, Himachal Pradesh, Haryana and Punjab"
+73,30 June 2024,Sunday,Remna Ni,Mizoram
+74,5 July 2024,Friday,Guru Hargobind Ji's Birthday,Jammu and Kashmir
+75,6 July 2024,Saturday,MHIP Day,Mizoram
+76,7 July 2024,Sunday,Ratha Yathra,Odisha
+77,8 July 2024,Monday,Behdeinkhlam Festival,Meghalaya
+78,13 July 2024,Saturday,Bhanu Jayanti,Sikkim
+79,13 July 2024,Saturday,Martyrs' Day,Jammu and Kashmir
+80,17 July 2024,Wednesday,Muharram,"National except Arunachal Pradesh, Assam, Chhattisgarh, Dadra and Nagar Haveli,  Daman and Diu, Goa, Haryana, Kerala, Manipur, Meghalaya,  Nagaland, Pondicherry, Punjab, Sikkim, Uttarakhand, and  West Bengal"
+81,17 July 2024,Wednesday,U Tirot Sing Day,Meghalaya
+82,31 July 2024,Wednesday,Bonalu,Telangana
+83,31 July 2024,Wednesday,Shaheed Udham Singh's Martyrdom Day,Haryana
+84,7 August 2024,Wednesday,Haryali Teej,Haryana
+85,8 August 2024,Thursday,Tendong Lho Rum Faat,Sikkim
+86,13 August 2024,Tuesday,Patriots Day,Manipur
+87,15 August 2024,Thursday,Independence Day,National
+88,15 August 2024,Thursday,Parsi New Year,"Daman and Diu, Dadra and Nagar Haveli, Gujarat & Maharashtra"
+89,16 August 2024,Friday,De Jure Transfer Day,Pondicherry
+90,19 August 2024,Monday,Raksha Bandhan,"Chhattisgarh, Daman and Diu, Gujarat, Haryana, Madhya Pradesh, Rajasthan,  Uttarakhand & Uttar Pradesh"
+91,19 August 2024,Monday,Jhulan Purnima,Odisha
+92,26 August 2024,Monday,Janmashtami,"National except Arunachal Pradesh, Assam, Goa, Karnataka,  Kerala, Lakshadweep, Maharashtra, Mizoram, Pondicherry &  West Bengal"
+93,5 September 2024,Thursday,Hartalika Teej,Chhattisgarh & Sikkim
+94,5 September 2024,Thursday,Tithi of Srimanta Shankardev,Assam
+95,7 September 2024,Saturday,Ganesh Chaturthi,"Andhra Pradesh, Daman and Diu, Dadra and Nagar Haveli, Goa, Gujarat, Karnataka,  Maharashtra, Pondicherry, Telangana and Tamil Nadu"
+96,8 September 2024,Sunday,Ganesh Chaturthi Holiday,Goa
+97,8 September 2024,Sunday,Nuakhai,Odisha
+98,13 September 2024,Friday,Ramdev Jayanti,Rajasthan
+99,13 September 2024,Friday,Teja Dashmi,Rajasthan
+100,14 September 2024,Saturday,First Onam,Kerala
+101,15 September 2024,Sunday,Thiruvonam,Kerala
+102,16 September 2024,Monday,Eid e Milad,"National except Andaman and Nicobar Islands, Arunachal Pradesh, Assam, Bihar,  Goa, Haryana, Himachal Pradesh, Meghalaya, Punjab, Sikkim, and West Bengal"
+103,17 September 2024,Tuesday,Indra Jatra,Sikkim
+104,18 September 2024,Wednesday,Sree Narayana Guru Jayanti,Kerala
+105,20 September 2024,Friday,Friday Following Eid e Milad,Jammu Kashmir
+106,21 September 2024,Saturday,Sree Narayana Guru Samadhi,Kerala
+107,23 September 2024,Monday,Heroes Martyrdom Day,Haryana
+108,2 October 2024,Wednesday,Mahalaya Amavasye,"Karnataka, Odisha, Tripura, and West Bengal"
+109,2 October 2024,Wednesday,Gandhi Jayanti,National
+110,3 October 2024,Thursday,First Day of Bathukamma,Telangana
+111,3 October 2024,Thursday,Ghatasthapana,Rajasthan
+112,3 October 2024,Thursday,Maharaja Agrasen Jayanti,Haryana
+113,10 October 2024,Thursday,Maha Saptami,"Meghalaya, Odisha, Sikkim, Tripura and West Bengal"
+114,11 October 2024,Friday,Maha Ashtami,"Andhra Pradesh, Arunachal Pradesh, Jharkhand, Meghalaya, Manipur, Odisha,  Rajasthan, Sikkim, Telangana, Tripura and West Bengal"
+115,12 October 2024,Saturday,Maha Navami,"Assam, Bihar, Jharkhand, Karnataka, Kerala, Meghalaya,  Nagaland, Odisha, Pondicherry, Sikkim, Tamil Nadu, Tripura,  Uttar Pradesh & West Bengal"
+116,13 October 2024,Sunday,Vijaya Dashami,"National except Chandigarh, Dadra and Nagar Haveli, Manipur"
+117,13 October 2024,Sunday,Janmostav of Srimanta Shankardev,Assam
+118,17 October 2024,Thursday,Lakshmi Puja,"Odisha, Tripura & West Bengal"
+119,17 October 2024,Thursday,Maharishi Valmiki Jayanti,"Himachal Pradesh, Haryana, Karnataka, Madhya Pradesh & Punjab"
+120,17 October 2024,Thursday,Kati Bihu,Assam
+121,31 October 2024,Thursday,Deepavali,"Andhra Pradesh, Goa, Karnataka, Kerala, Pondicherry, Telangana  & Tamil Nadu"
+122,31 October 2024,Thursday,Sardar Vallabhbhai Patel Jayanti,Gujarat
+123,1 November 2024,Friday,Diwali,"National except Andhra Pradesh, Goa, Karnataka, Kerala,  Pondicherry, Tamil Nadu & Telangana"
+124,1 November 2024,Friday,Haryana Day,Haryana
+125,1 November 2024,Friday,Kannada Rajyothsava,Karnataka
+126,1 November 2024,Friday,Kut,Manipur
+127,1 November 2024,Friday,Puducherry Liberation Day,Pondicherry
+128,2 November 2024,Saturday,Deepavali Holiday,"Daman and Diu, Haryana, Karnataka, Rajasthan, Uttarakhand &  Uttar Pradesh"
+129,2 November 2024,Saturday,Vikram Samvat New Year,Gujarat
+130,3 November 2024,Sunday,Bhai Dooj,"Gujarat, Rajasthan, Sikkim, Uttarakhand, Uttar Pradesh"
+131,7 November 2024,Thursday,Chhath Puja,"Assam, Bihar, Chhattisgarh, Jharkhand"
+132,15 November 2024,Friday,Guru Nanak Jayanti,"National except Andhra Pradesh, Bihar,Dadra and Nagar Haveli, Daman and Diu,  Goa, Karnataka, Kerala, Manipur, Meghalaya, Odisha,  Pondicherry, Sikkim, Tamil Nadu and Tripura"
+133,15 November 2024,Friday,Karthika Purnima,Odisha and Telangana
+134,18 November 2024,Monday,Kanakadasa Jayanti,Karnataka
+135,22 November 2024,Friday,Lhabab Duchen,Sikkim
+136,23 November 2024,Saturday,Seng Kut Snem,Meghalaya
+137,1 December 2024,Sunday,Indigenous Faith Day,Arunachal pradesh
+138,3 December 2024,Tuesday,Feast of St Francis Xavier,Goa
+139,5 December 2024,Thursday,Sheikh Muhammad Abdullah Jayanti,Jammu and Kashmir
+140,6 December 2024,Friday,Sri Guru Teg Bahadur Ji's Martyrdom Day,Punjab
+141,12 December 2024,Thursday,Pa Togan Nengminza Sangma,Meghalaya
+142,18 December 2024,Wednesday,Death Anniversary of U SoSo Tham,Meghalaya
+143,18 December 2024,Wednesday,Guru Ghasidas Jayanti,Chhattisgarh
+144,19 December 2024,Thursday,Liberation Day,"Daman and Diu, Goa"
+145,24 December 2024,Tuesday,Christmas Holiday,Meghalaya and Mizoram
+146,25 December 2024,Wednesday,Christmas Day,National
+147,26 December 2024,Thursday,Christmas Holiday,Meghalaya and Telangana
+148,26 December 2024,Thursday,Shaheed Udham Singh Jayanti,Haryana
+149,30 December 2024,Monday,Tamu Losar,Sikkim
+150,30 December 2024,Monday,U Kiang Nangbah,Meghalaya
+151,31 December 2024,Tuesday,New Year's Eve,Manipur and Mizoram

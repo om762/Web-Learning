@@ -23,4 +23,5 @@ urlpatterns = [
     path('square/', include("square.urls")),
     path('todo_app/', include("todo_app.urls")),
     path('isholiday/', include("isholiday.urls")),
+    path('calu/', include("calu.urls"))
 ]

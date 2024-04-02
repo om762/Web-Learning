@@ -6,7 +6,7 @@ import csv
 
 # Create your views here.
 def index(request):
-    date = datetime.today().date()
+    date = datetime(2024, 4, 10).date()
     weekDay = date.strftime("%A")
     holiday = False
     dueTo = None
