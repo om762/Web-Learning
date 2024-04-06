@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block body %}
+    <h1>Search Results for "{{ query }}"</h1>
+
+    <ul>
+        {% for entry in entries %}
+            <li><a href="{% url 'entry' TITLE=entry %}">{{ entry }}</a></li>
+        {% empty %}
+        <div class="text-center mt-5">
+            <p>No results found.</p>
+            <img src="{% static 'images/no_results.jpg' %}" alt="No results found" style="width: 400px;">
+        </div>
+        {% endfor %}
+    </ul>
+{% endblock %}

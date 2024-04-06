@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Entry
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Create New Entry</h1>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        {% if status == "success" %}
+        <div class="alert alert-success">
+            Your content is successfully saved.
+        </div>
+        {% elif status == "failed" %}
+        <div class="alert alert-danger">
+            Content not saved. Title already exist.
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value= "{{ title }}" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="content">Markdown Content</label>
+            <textarea class="form-control" id="markdown" name="markdown" rows="8" placeholder="Enter the Markdown content for the page..." required>{{ content }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock %}
