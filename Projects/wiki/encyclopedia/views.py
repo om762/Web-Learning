@@ -1,6 +1,5 @@
 from .util import *
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 import markdown2 as md
 import random
 
@@ -77,6 +76,10 @@ def new(request):
 def edit(request, TITLE):
     if request.method == "POST":
         content = request.POST.get("markdown", "")
+        
+        # Remove extra line breaks from the content
+        content = re.sub(r'\n\s*\n', '\n', content.strip())
+        
         save_entry(TITLE, content)
         return redirect("entry", TITLE=TITLE)
     content = get_entry(TITLE)

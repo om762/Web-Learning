@@ -19,10 +19,6 @@ def save_entry(title, content):
     content. If an existing entry with the same title already exists,
     it is replaced.
     """
-    
-    # Remove extra line breaks from the content
-    content = re.sub(r'\n\s*\n', '\n', content.strip())
-    
     filename = f"entries/{title}.md"
     if default_storage.exists(filename):
         default_storage.delete(filename)
