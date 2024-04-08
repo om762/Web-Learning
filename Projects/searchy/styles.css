@@ -1,0 +1,71 @@
+/* Reset default browser styles */
+body, html, h1, h2, h3, p, ul, ol, li, form, label, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f1f1f1;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header a {
+    text-decoration: none;
+    color: #4285f4;
+    margin-right: 20px;
+}
+
+header #logo {
+    margin-right: auto;
+}
+
+main {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 0 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+}
+
+input[type="submit"] {
+    width: 40%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #4285f4;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #357ae8;
+}
+
