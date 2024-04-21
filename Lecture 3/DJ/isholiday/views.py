@@ -6,7 +6,7 @@ import csv
 
 # Create your views here.
 def index(request):
-    date = datetime(2024, 4, 10).date()
+    date = datetime.today().date()
     weekDay = date.strftime("%A")
     holiday = False
     dueTo = None
@@ -14,7 +14,7 @@ def index(request):
     
     if weekDay == "Sunday" or weekDay == "Saturday":
         holiday = True
-        dueTo = "WeekDay"
+        dueTo = weekDay
     else:
         holiday, dueTo = sageHoliday(date)
 
