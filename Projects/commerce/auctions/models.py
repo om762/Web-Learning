@@ -19,3 +19,6 @@ class Listing(models.Model):
 class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
     type = models.CharField(max_length=35)
+
+    def __str__(self) -> str:
+        return self.type
