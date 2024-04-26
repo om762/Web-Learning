@@ -12,6 +12,8 @@ class Listing(models.Model):
     description = models.CharField(max_length=5000)
     starting_bid = models.IntegerField()
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name="items")
+    active = models.BooleanField(default=True)
+    image_url = models.URLField(blank=True)
     
     def __str__(self) -> str:
         return self.item_name
