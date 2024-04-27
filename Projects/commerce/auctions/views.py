@@ -9,9 +9,6 @@ from .models import User, Listing
 
 def index(request):
     active_listings = Listing.objects.all().filter(active=True)
-    print(active_listings)
-    for i in active_listings:
-        print(i.item_name)
     return render(request, "auctions/index.html", {
         "active_listings" : active_listings
     })
@@ -67,3 +64,6 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+def categories(request):
+    pass

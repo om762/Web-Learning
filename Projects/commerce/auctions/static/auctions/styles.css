@@ -1,3 +1,55 @@
 body {
+    padding: 0px;
+}
+:root{
+    --uranian-blue: #add7f6ff;
+    --jordy-blue: #87bfffff;
+    --chefchaouen-blue: #3f8efcff;
+    --neon-blue: #2667ffff;
+    --chrysler-blue: #3b28ccff;
+}
+
+*{
+    text-decoration: none;
+}
+
+.navbar{
+    border-radius: 10px;
+    background: var(--neon-blue);
+    font-family: sans-serif;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.navdiv{
+    font-family: 'Trebuchet MS', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo a{
+    font-size: 35px;
+    font-weight: 600;
+    color: whitesmoke;
+}
+li{
+    list-style: none;
+    display: inline-block;
+}
+li a{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 25px;
+}
+button{
+    background-color: var(--uranian-blue);
+    margin-left: 10px;
+    border-radius: 50px;
+    border-color: black;
     padding: 10px;
+}
+button a{
+    color: var(--chrysler-blue);
+    font-weight: bold;
+    font-size: 15px;
 }
