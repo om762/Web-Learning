@@ -1,5 +1,8 @@
 body {
-    padding: 0px;
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    padding: 0;
+    background-color: #f3f3f3;
 }
 :root{
     --uranian-blue: #add7f6ff;
@@ -8,11 +11,9 @@ body {
     --neon-blue: #2667ffff;
     --chrysler-blue: #3b28ccff;
 }
-
 *{
     text-decoration: none;
 }
-
 .navbar{
     border-radius: 10px;
     background: var(--neon-blue);

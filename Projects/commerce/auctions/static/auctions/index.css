@@ -1,0 +1,78 @@
+.card-container {
+    font-family: Arial;
+    display: inline-block;
+    justify-content: center;
+    align-items: flex;
+    padding: 2px;
+}
+
+.card-card {
+    width: 400px; /* Adjust the width here */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.card-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 300px; /* Set the width of the image container */
+    height: 200px; /* Set the height of the image container */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Fit the entire image inside the container */
+    object-position: center; /* Center the image within the container */
+    display: inline-flexbox;
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+
+.card-details {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-category {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.card-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: right;
+}
+
+.card-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: #add1ff;
+}
