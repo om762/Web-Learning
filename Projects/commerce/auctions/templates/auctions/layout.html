@@ -15,11 +15,11 @@
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'categories' %}">Categories</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'watchlist' %}">Watch List</a></li>
-                    <li><a href="profile">Profile</a></li>
+                    <li nav-item><a href="{% url 'watchlist' %}">Watch List</a></li>
+                    <li><a href="{% url 'categories' %}">Profile</a></li>
                 {% else %}
-                    <button><a href="{% url 'login' %}">Log In</a></button>
-                    <button><a href="{% url 'register' %}">Register</a></button>
+                    <button class="nav-button"><a href="{% url 'login' %}">Log In</a></button>
+                    <button class="nav-button"><a href="{% url 'register' %}">Register</a></button>
                 {% endif %}
             </ul> 
     </div>

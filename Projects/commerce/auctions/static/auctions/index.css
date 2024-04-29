@@ -12,7 +12,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin: 20px;
+    margin: 15px;
     position: relative;
     transition: transform 0.3s ease;
 }
@@ -22,23 +22,31 @@
 }
 
 .card-image {
-    width: 300px; /* Set the width of the image container */
-    height: 200px; /* Set the height of the image container */
+    width: 300px;
+    height: 200px;
     overflow: hidden;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Fit the entire image inside the container */
-    object-position: center; /* Center the image within the container */
-    display: inline-flexbox;
-    margin: 0 auto; /* Center the image horizontally */
+    object-fit: contain; 
+    object-position: center;
+    display: inline-flex;
+    margin: 0 auto;
 }
 
 
 .card-details {
     padding: 20px;
+}
+
+.title-div{
+    height: 27.5px;
+    width: 310px;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
 }
 
 .card-title {

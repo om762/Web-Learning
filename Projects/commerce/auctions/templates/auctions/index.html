@@ -1,7 +1,11 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+    <div class="head-div">
+        <h2 class="page-heading">Active Listings</h2>
+        <button class="card-button" style="display: inline-block;">New</button>
+    </div>
+
 
     {% for listing in active_listings %}
         <div class="card-container">
@@ -10,7 +14,9 @@
                     <img src="{{ listing.image_url }}" alt="Item Image">
                 </div>
                 <div class="card-details">
-                    <div class="card-title">{{ listing.item_name }}</div>
+                    <div class="title-div">
+                        <div class="card-title">{{ listing.item_name }}</div>
+                    </div>
                     <div class="card-category">{{ listing.category }}</div>
                     <div class="card-price">${{ listing.starting_bid }}</div>
                     <div class="card-buttons">
