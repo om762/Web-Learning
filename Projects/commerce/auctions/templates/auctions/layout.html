@@ -5,18 +5,18 @@
 <head>
     <title>{% block title %}Auctions{% endblock %}</title>
     <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
-    <link href="{% static 'auctions/index.css' %}" rel="stylesheet">
+    {% block meta_data %}{% endblock meta_data %}
 </head>
 <body>
 <nav class="navbar">
     <div class="navdiv">
             <div class="logo"><a href="{% url 'index' %}">AUCTIONS</a></div>
             <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'categories' %}">Categories</a></li>
+                <li class="nav-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="nav-item"><a href="{% url 'categories' %}">Categories</a></li>
                 {% if user.is_authenticated %}
-                    <li nav-item><a href="{% url 'watchlist' %}">Watch List</a></li>
-                    <li><a href="{% url 'categories' %}">Profile</a></li>
+                    <li class="nav-item"><a href="{% url 'watchlist' %}">Watch List</a></li>
+                    <li class="nav-item"><a href="{% url 'categories' %}">Profile</a></li>
                 {% else %}
                     <button class="nav-button"><a href="{% url 'login' %}">Log In</a></button>
                     <button class="nav-button"><a href="{% url 'register' %}">Register</a></button>
@@ -24,7 +24,7 @@
             </ul> 
     </div>
 </nav>
-<div class="container mt-4">
+<div>
     {% if user.is_authenticated %}
         Signed in as <strong>{{ user.username }}</strong>.
         <a href="{% url 'logout' %}">logout</a>

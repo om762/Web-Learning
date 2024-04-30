@@ -1,4 +1,9 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block meta_data %}
+    <link href="{% static 'auctions/index.css' %}" rel="stylesheet">
+{% endblock meta_data %}
 
 {% block body %}
     <div class="head-div">

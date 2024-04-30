@@ -41,20 +41,20 @@ li{
     list-style: none;
     display: inline-block;
 }
-li a{
+.nav-item a{
     color: white;
     font-size: 18px;
     font-weight: bold;
     margin-right: 25px;
 }
-button{
+.nav-button{
     background-color: var(--uranian-blue);
     margin-left: 10px;
     border-radius: 50px;
     border-color: black;
     padding: 10px;
 }
-button a{
+.nav-button a{
     color: var(--chrysler-blue);
     font-weight: bold;
     font-size: 15px;
