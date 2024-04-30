@@ -1,3 +1,27 @@
+.head-div {
+    width: fit-content;
+    justify-content: space-between;
+}
+
+.page-heading{
+    display: inline-block;
+    padding-right: 40px;
+}
+
+.new-button {
+    margin-top: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #77B28C;
+    transition: background-color 0.3s ease
+}
+
+.new-button:hover {
+    background-color: #499F68;
+}
+
 .card-container {
     font-family: Arial;
     display: inline-block;
@@ -16,6 +40,7 @@
     position: relative;
     transition: transform 0.3s ease;
 }
+
 
 .card-card:hover {
     transform: translateY(-5px);
@@ -70,7 +95,7 @@
 
 .card-buttons {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
 }
 
 .card-button {
@@ -78,6 +103,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #add7f6ff;
     transition: background-color 0.3s ease;
 }
 
