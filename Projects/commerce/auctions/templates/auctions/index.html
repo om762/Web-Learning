@@ -9,7 +9,7 @@
     <div class="head-div">
         <h2 class="page-heading">Active Listings</h2>
         {% if user.is_authenticated %}
-        <button class="new-button" style="display: inline-block;">
+        <button class="new-button" style="display: inline;">
             <a href="{% url 'create_listing' %}">Create Listing</a>
         </button>
         {% endif %}

@@ -3,23 +3,29 @@
     justify-content: space-between;
 }
 
-.page-heading{
+.head-div .page-heading{
     display: inline-block;
     padding-right: 40px;
 }
 
 .new-button {
-    margin-top: 5px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid #3c8844;
+    border-radius: 50px;
     cursor: pointer;
-    background-color: #77B28C;
+    background-color: #3c8844;
     transition: background-color 0.3s ease
 }
 
 .new-button:hover {
-    background-color: #499F68;
+    background-color: #56bd5e;
+}
+
+.new-button a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    justify-self: center;
 }
 
 .card-container {
@@ -31,7 +37,7 @@
 }
 
 .card-card {
-    width: 400px; /* Adjust the width here */
+    width: 350px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -81,7 +87,7 @@
 }
 
 .card-category {
-    font-size: 18px;
+    font-size: 14px;
     color: #666;
     margin-bottom: 10px;
 }

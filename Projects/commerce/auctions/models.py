@@ -4,7 +4,7 @@ from django.db import models
 
 class User(AbstractUser):
     id = models.BigAutoField(primary_key=True)
-
+    
 
 class Listing(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -24,3 +24,9 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return self.type
+    
+    
+if __name__=="__main__":
+    user = User(first_name="Abhishek", last_name="Mourya", username="abhi6774", password="dhfskhfkjfas")
+    user.save()
+    
