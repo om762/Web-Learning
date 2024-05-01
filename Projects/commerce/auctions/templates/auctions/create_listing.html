@@ -1,7 +1,13 @@
+{% load static %}
 {% extends "auctions/layout.html" %}
 
+{% block title %}Create New Listing{% endblock title %}
+{% block meta_data %}
+    <link href="{% static 'auctions/create_listing.css' %}" rel="stylesheet">
+{% endblock meta_data %}
+
 {% block body %}
-    
+
 
     {% if message %}
         <div class="message">{{message}}</div>
