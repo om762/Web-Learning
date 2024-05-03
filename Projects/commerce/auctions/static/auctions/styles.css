@@ -5,8 +5,6 @@ body {
     background-color: #f3f3f3;
 }
 
-
-
 :root{
     --uranian-blue: #add7f6ff;
     --jordy-blue: #87bfffff;
@@ -14,46 +12,79 @@ body {
     --neon-blue: #2667ffff;
     --chrysler-blue: #3b28ccff;
 }
+
 *{
     text-decoration: none;
 }
+
 .navbar{
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    width: 99%;
+    z-index: 2;
     border-radius: 10px;
-    background: var(--neon-blue);
+    background: rgba(255, 255, 255, 0.521);
     font-family: sans-serif;
     padding-right: 15px;
     padding-left: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .navdiv{
     font-family: 'Trebuchet MS', sans-serif;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .logo a{
     font-size: 35px;
     font-weight: 600;
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
 }
+
 li{
     list-style: none;
     display: inline-block;
 }
+
 .nav-item a{
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 18px;
     font-weight: bold;
     margin-right: 25px;
 }
+
 .nav-button{
     background-color: var(--uranian-blue);
     margin-left: 10px;
+    margin-right: 10px;
     border-radius: 50px;
     border-color: black;
     padding: 10px;
 }
+
 .nav-button a{
-    color: var(--chrysler-blue);
+    color: #000;
     font-weight: bold;
     font-size: 15px;
 }
+
+.content {
+    margin-top: 80px;
+}
+
+/* Hide the scrollbar while still allowing scrolling */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Optional: Customize scrollbar track and thumb to be transparent */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
