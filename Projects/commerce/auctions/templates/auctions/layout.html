@@ -13,7 +13,7 @@
     <div class="navdiv">
             <div class="logo"><a href="{% url 'index' %}">AUCTIONS</a></div>
             <ul>
-                <li class="nav-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="nav-item"><a href="{% url 'index' %}">Active Listings</a></li>
                 <li class="nav-item"><a href="{% url 'categories' %}">Categories</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a href="{% url 'watchlist' %}">Watch List</a></li>

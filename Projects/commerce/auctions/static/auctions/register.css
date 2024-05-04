@@ -1,4 +1,4 @@
-.login-body{
+.regi-body{
     margin: 0;
     display: flex;
     justify-content: center;
@@ -6,7 +6,7 @@
     height: 97vh;
 }
 
-.login-container {
+.regi-container {
     background-color: rgb(255, 255, 255);
     padding: 30px;
     border-radius: 10px;
@@ -14,13 +14,14 @@
     width: 350px;
 }
 
-.login-container h2 {
+.regi-container h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.regi-container input[type="text"],
+.regi-container input[type="password"],
+.regi-container input[type="email"] {
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 15px;
@@ -30,18 +31,19 @@
     transition: border-color 0.4s ease;
 }
 
-.login-container input[type="text"]:focus-visible,
-.login-container input[type="password"]:focus-visible {
+.regi-container input[type="text"]:focus-visible,
+.regi-container input[type="password"]:focus-visible,
+.regi-container input[type="email"]:focus-visible {
     border: none;
     outline: none;
     border-bottom: 2px solid #0077ff;
 }
 
-.login-container input[type="password"]{
+.regi-container input[name="confirmation"]{
     margin-bottom: 0;
 }
 
-.login-container input[type="submit"] {
+.regi-container input[type="submit"] {
     width: 100%;
     margin-top: 20px;
     padding: 10px;
@@ -53,11 +55,11 @@
     cursor: pointer;
 }
 
-.login-container input[type="submit"]:hover {
+.regi-container input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-.login-container p {
+.regi-container p {
     margin-top: 15px;
     text-align: center;
 }

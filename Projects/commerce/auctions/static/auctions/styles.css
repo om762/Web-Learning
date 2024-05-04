@@ -82,6 +82,7 @@ li{
 /* Hide the scrollbar while still allowing scrolling */
 ::-webkit-scrollbar {
     width: 10px;
+    z-index: 3;
   }
   
   /* Optional: Customize scrollbar track and thumb to be transparent */
