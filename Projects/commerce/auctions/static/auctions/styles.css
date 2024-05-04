@@ -24,7 +24,7 @@ body {
     width: 99%;
     z-index: 2;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.521);
+    background: rgb(255, 255, 255);
     font-family: sans-serif;
     padding-right: 15px;
     padding-left: 15px;
@@ -50,10 +50,14 @@ li{
 }
 
 .nav-item a{
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.514);
     font-size: 18px;
     font-weight: bold;
     margin-right: 25px;
+}
+
+.nav-item a:hover{
+    color: #0077ff;
 }
 
 .nav-button{
