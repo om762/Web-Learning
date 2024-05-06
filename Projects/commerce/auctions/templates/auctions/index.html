@@ -1,8 +1,6 @@
 {% extends "auctions/layout.html" %}
-{% load static %}
 
 {% block meta_data %}
-    <link href="{% static 'auctions/index.css' %}" rel="stylesheet">
 {% endblock meta_data %}
 
 {% block body %}
@@ -17,21 +15,21 @@
 
 
     {% for listing in active_listings %}
-        <div class="card-container">
-            <div class="card-card">
-                <div class="card-image">
-                    <img src="{{ listing.image_url }}" alt="Item Image">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ listing.image_url }}" alt="Item Image">
+            </div>
+            <div class="card-details">
+                <div class="card-title-div">
+                    <div class="card-title">{{ listing.item_name }}</div>
                 </div>
-                <div class="card-details">
-                    <div class="title-div">
-                        <div class="card-title">{{ listing.item_name }}</div>
-                    </div>
-                    <div class="card-category">{{ listing.category }}</div>
-                    <div class="card-price">${{ listing.starting_bid }}</div>
-                    <div class="card-buttons">
-                        <button class="card-button">Bid in Auction</button>
-                        <button class="card-button">Add to Watchlist</button>
-                    </div>
+                <div class="card-category">{{ listing.category }}</div>
+                <div class="card-price">${{ listing.starting_bid }}</div>
+                <div class="card-buttons">
+                    <button class="card-button details"><a href="#">Details</a></button>
+                    {% if user.is_authenticated %}
+                        <button class="card-button watchlist"><a href="#">Add to Watchlist</a></button>
+                    {% endif %}
                 </div>
             </div>
         </div>
