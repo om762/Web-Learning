@@ -1,14 +1,10 @@
 {% extends "auctions/layout.html" %}
-{% load static %}
 
 {% block title%}Register{% endblock title %}
-{% block meta_data %}
-<link href="{% static 'auctions/register.css' %}" rel="stylesheet"/>
-{% endblock meta_data %}
 
 {% block body %}
-<div class="regi-body">
-    <div class="regi-container">
+<div class="form-body">
+    <div class="form-container">
         <h2>Register</h2>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}

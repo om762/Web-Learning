@@ -2,33 +2,41 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Auctions{% endblock %}</title>
-    <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
-    {% block meta_data %}{% endblock meta_data %}
+    <link href="{% static 'auctions/styles.css' %}" rel="stylesheet" />
 </head>
+
 <body>
-<nav class="navbar">
-    <div class="navdiv">
+    <nav class="navbar">
+        <div class="navdiv">
             <div class="logo"><a href="{% url 'index' %}">AUCTIONS</a></div>
             <ul>
-                <li class="nav-item"><a href="{% url 'index' %}">Active Listings</a></li>
-                <li class="nav-item"><a href="{% url 'categories' %}">Categories</a></li>
+                <li class="nav-item">
+                    <a href="{% url 'index' %}">Active Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'categories' %}">Categories</a>
+                </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item"><a href="{% url 'watchlist' %}">Watch List</a></li>
-                    <li class="nav-item"><a href="{% url 'categories' %}">Profile</a></li>
-                    <li class="nav-item"><a href="{% url 'logout' %}">logout</a></li>
+                <li class="nav-item">
+                    <a href="{% url 'watchlist' %}">Watch List</a>
+                </li>
+                <li class="nav-item"><a href="{% url 'categories' %}">Profile</a></li>
+                <li class="nav-item"><a href="{% url 'logout' %}">logout</a></li>
                 {% else %}
-                    <button class="nav-button"><a href="{% url 'login' %}">Log In</a></button>
-                    <button class="nav-button"><a href="{% url 'register' %}">Register</a></button>
+                <button class="nav-button">
+                    <a href="{% url 'login' %}">Log In</a>
+                </button>
+                <button class="nav-button">
+                    <a href="{% url 'register' %}">Register</a>
+                </button>
                 {% endif %}
-            </ul> 
-    </div>
-</nav>
-<div class="content">
-    {% block body %}
-    {% endblock %}
-</div>
+            </ul>
+        </div>
+    </nav>
+    <div class="content">{% block body %} {% endblock %}</div>
 </body>
 </html>
