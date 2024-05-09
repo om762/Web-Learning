@@ -1,5 +1,4 @@
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -10,7 +9,7 @@ class User(AbstractUser):
 class Listing(models.Model):
     id = models.BigAutoField(primary_key=True)
     item_name = models.CharField(max_length=100)
-    description = models.CharField(max_length=5000)
+    description = models.TextField(max_length=1000)
     starting_bid = models.IntegerField()
     current_price = models.IntegerField()
     category = models.ForeignKey('Category', blank=True, on_delete=models.CASCADE, related_name="items")

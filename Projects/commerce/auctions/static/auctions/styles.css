@@ -74,9 +74,6 @@ body {
     font-size: 15px;
 }
 
-.content {
-    margin-top: 80px;
-}
 
 .head-div {
     width: fit-content;
@@ -85,7 +82,7 @@ body {
 
 .head-div .page-heading {
     display: inline-block;
-    margin-top: 105px;
+    margin-top: 100px;
     margin-left: 40px;
     margin-bottom: 0px;
     padding-right: 40px;
@@ -281,4 +278,67 @@ body {
 
 .content {
     margin-top: 0px;
+}
+
+
+/* CSS for form */
+.form2-container {
+    background-color: whitesmoke;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form2-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.form2-container input[type="text"],
+.form2-container input[type="number"],
+.form2-container textarea,
+.form2-container select,
+.form2-container input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    resize: vertical;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    font-size: 16px;
+    color: #555;
+}
+
+.form2-container input[type="text"]:focus,
+.form2-container input[type="number"]:focus,
+.form2-container textarea:focus,
+.form2-container select:focus,
+.form2-container input[type="url"]:focus {
+    outline: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.form2-container input[type="submit"] {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 50px;
+    border-bottom: 2px solid #000000;
+    border-radius: 20px;
+    cursor: pointer;
+    background: radial-gradient(circle, #41ff6a, #486d4e);
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    width: auto;
+}
+
+.form2-container input[type="submit"]:hover {
+    background: radial-gradient(circle, #56ff4d, #005813);
 }

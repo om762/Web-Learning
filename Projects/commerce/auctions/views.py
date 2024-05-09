@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User, Listing, Category
+from .models import User, Listing, Category, ListingImage
 
 
 def index(request):
@@ -65,7 +66,35 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
+@login_required(login_url='login')
 def create_listing(request):
+    if request.method == "POST":
+        item_title = request.POST["item_name"]
+        description = request.POST["description"]
+        cat_id = request.POST["category"]
+        starting_bid = request.POST["starting_bid"]
+        image_url = request.POST["image_url"]
+        images_url = request.POST["images_url"]
+        
+        category = Category.objects.get(pk=cat_id)
+
+        # Create new Listing
+        new_listing = Listing(
+            item_name = item_title,
+            description = description,
+            starting_bid = starting_bid,
+            current_price = starting_bid,
+            category = category,
+            image_url = image_url,
+            owner = request.user
+        )
+        new_listing.save()
+        
+        urls = images_url.split()
+        for url in urls:
+            ListingImage(listing = new_listing, image_url = image_url).save()
+        return HttpResponseRedirect(reverse("index"))
+
     category_list = Category.objects.all()
     return render(request, "auctions/create_listing.html", {
         "category_list": category_list

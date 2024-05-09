@@ -1,5 +1,5 @@
-{% load static %}
 {% extends "auctions/layout.html" %}
+{% load static %}
 
 {% block title %}Create New Listing{% endblock title %}
 {% block meta_data %}
@@ -8,38 +8,35 @@
 
 {% block body %}
 
+    <div class="form-body">
+        <div class="form2-container">
+            <h2>Create New Auction Listing</h2>
+            <form method="POST" action="{% url 'create_listing' %}">
+                {% csrf_token %}
+                <label for="itemName">Item Name</label>
+                <input type="text" id="itemName" name="item_name" placeholder="Enter item name" required>
+    
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" placeholder="Enter item description" required></textarea>
+                
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    {% for category in category_list %}
+                        <option value="{{ category.id }}">{{ category.type }}</option>
+                    {% endfor %}
+                </select>
 
-    {% if message %}
-        <div class="message">{{message}}</div>
-    {% endif %}
+                <label for="startingBid">Starting Bid</label>
+                <input type="number" id="startingBid" name="starting_bid" placeholder="Enter starting bid" required>
 
-    <form action="{% url 'create_listing' %}" method="post">
-        {% csrf_token %}
-        <div class="form-field">
-            <label class="form-lable" for="item_name">Title</label>
-            <input class="form-input" type="text" name="item_name" placeholder="Enter Title for Listing">
+                <label for="imageURL">Image URL</label>
+                <input type="url" id="imageURL" name="image_url" placeholder="Enter image URL">
+
+                <label for="imageURL">Extra Images(Separated by ,)</label>
+                <input type="url" id="imagesURL" name="images_url" placeholder="List of images">
+
+                <input type="submit">
+            </form>
         </div>
-        <div class="form-field">
-            <label class="form-lable" for="starting_bid">Starting Bid</label>
-            <input class="form-input" type="number" name="starting_bid" placeholder="Minimum biding price">
-        </div>
-        <div class="form-field">
-            <label class="form-lable" for="category">Category</label>
-            <select class="form-input" name="category" placeholder="Category of Item">
-                {% for category in category_list %}
-                    <option value="{{ category }}">{{ category }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-field">
-            <label class="form-lable" for="description">Description</label>
-            <input class="form-input" type="text" name="description" placeholder="Describe your item">
-        </div>
-        <div class="form-field">
-            <label class="form-lable" for="image">Url of Image</label>
-            <input class="form-input" type="text" name="image" placeholder="https://example.com/image-placeholder.jpg">
-        </div>
-        
-        <input id="create-listing" type="submit" value="Create">
-    </form>
+    </div>
 {% endblock body %}
