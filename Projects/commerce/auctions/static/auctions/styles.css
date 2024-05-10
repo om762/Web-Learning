@@ -148,16 +148,16 @@ body {
 }
 
 .card-title-div {
-    height: 27.5px;
-    width: 310px;
+    height: 70px;
+    /* width: 310px; */
     overflow: hidden;
     margin: 0px;
     padding: 0px;
 }
 
 .card-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 

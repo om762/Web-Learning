@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import F
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -9,8 +10,8 @@ from .models import User, Listing, Category, ListingImage
 
 
 def index(request):
-    active_listings = Listing.objects.all().filter(active=True)
-    return render(request, "auctions/index.html", {
+        active_listings = Listing.objects.filter(active=True).order_by(F('created_at').desc())
+        return render(request, "auctions/index.html", {
         "active_listings" : active_listings
     })
 
