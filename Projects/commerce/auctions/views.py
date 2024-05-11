@@ -91,9 +91,9 @@ def create_listing(request):
         )
         new_listing.save()
         
-        urls = images_url.split()
+        urls = images_url.split(",")
         for url in urls:
-            ListingImage(listing = new_listing, image_url = image_url).save()
+            ListingImage(listing = new_listing, image_url = url).save()
         return HttpResponseRedirect(reverse("index"))
 
     category_list = Category.objects.all()
@@ -104,3 +104,11 @@ def create_listing(request):
 
 def categories(request):
     pass
+
+def listing_detail(request, item_id):
+    listing = Listing.objects.get(pk=item_id)
+    images = ListingImage.objects.filter(listing=listing).all()
+    return render(request, "auctions/listing.html", {
+        "listing": listing,
+        "images": images
+    })

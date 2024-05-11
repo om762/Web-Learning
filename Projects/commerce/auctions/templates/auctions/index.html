@@ -24,7 +24,7 @@
         <div class="card-category">{{ listing.category }}</div>
         <div class="card-price">${{ listing.starting_bid }}</div>
         <div class="card-buttons">
-            <button class="card-button details"><a href="#">Details</a></button>
+            <button class="card-button details"><a href="listing/{{ listing.id }}">Details</a></button>
             {% if user.is_authenticated %}
             <button class="card-button watchlist"><a href="#">Add to Watchlist</a></button>
             {% endif %}
