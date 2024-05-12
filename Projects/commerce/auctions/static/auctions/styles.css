@@ -277,22 +277,55 @@ body {
 }
 
 
+/* Creating Listing Form */
 
-/* CSS for form */
+@media screen and (max-width: 768px) {
+    .form2-container {
+        width: 90%;
+        padding: 20px;
+    }
+    .form2-container .form-layout {
+        flex-direction: column;
+    }
+    .s1, .s2 {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .form-body {
+        margin-top: 250px;
+    }
+}
+
 .form2-container {
     background-color: whitesmoke;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    max-width: 600px;
-    width: 100%;
+    width: 800px;
     margin: 0 auto;
+    justify-content: center;
 }
 
-.form2-container h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
+.form2-container .form-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.s1 {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.s2 {
+    flex: 1;
+}
+
+.form2-container label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px; /* Add some spacing below the labels */
 }
 
 .form2-container input[type="text"],
@@ -300,14 +333,14 @@ body {
 .form2-container textarea,
 .form2-container select,
 .form2-container input[type="url"] {
-    width: 100%;
+    width: 90%; 
     padding: 10px;
     margin-bottom: 20px;
     border: none;
     resize: vertical;
     border-radius: 5px;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
     font-size: 16px;
     color: #555;
@@ -319,7 +352,12 @@ body {
 .form2-container select:focus,
 .form2-container input[type="url"]:focus {
     outline: none;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form2-container textarea {
+    width: 90%; 
+    resize: vertical;
 }
 
 .form2-container input[type="submit"] {

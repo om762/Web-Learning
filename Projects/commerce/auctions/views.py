@@ -75,8 +75,11 @@ def create_listing(request):
         cat_id = request.POST["category"]
         starting_bid = request.POST["starting_bid"]
         image_url = request.POST["image_url"]
-        images_url = request.POST["images_url"]
-        
+        img1 = request.POST["image1"]
+        img2 = request.POST["image2"]
+        img3 = request.POST["image3"]
+        img4 = request.POST["image4"]
+            
         category = Category.objects.get(pk=cat_id)
 
         # Create new Listing
@@ -91,10 +94,12 @@ def create_listing(request):
         )
         new_listing.save()
         
-        urls = images_url.split(",")
-        for url in urls:
-            ListingImage(listing = new_listing, image_url = url).save()
+        imgs = [img1, img2, img3, img4]
+        for img in imgs:
+            ListingImage(listing = new_listing, image_url = img).save()
+        
         return HttpResponseRedirect(reverse("index"))
+
 
     category_list = Category.objects.all()
     return render(request, "auctions/create_listing.html", {
