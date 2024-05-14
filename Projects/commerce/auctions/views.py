@@ -117,3 +117,6 @@ def listing_detail(request, item_id):
         "listing": listing,
         "images": images
     })
+
+def bid(request):
+    pass

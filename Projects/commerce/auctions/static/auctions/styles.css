@@ -377,3 +377,126 @@ body {
 .form2-container input[type="submit"]:hover {
     background: radial-gradient(circle, #56ff4d, #005813);
 }
+
+/* Detail Page */
+/* Reset default styles */
+/* listing Details Section */
+.listing-details {
+    margin: 150px 50px 10px 50px;
+    display: flex;
+    padding: 20px;
+    border: 1px solid #000000;
+}
+
+.listing-image {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.listing-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.listing-info {
+    flex: 2;
+    height: 100%;
+}
+
+.listing-info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.category, .owner {
+    font-size: 14px;
+    color: #888;
+}
+
+.current-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Bidding Section */
+.bidding-section {
+    padding: 20px;
+}
+
+.bidding-section h3 {
+    font-size: 18px;
+}
+
+.bidding-section input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.bidding-section button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Extra Images Section */
+.extra-images {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.extra-image {
+    flex: 1;
+    margin: 10px;
+}
+
+.extra-image img {
+    max-height: 350px;
+    width: auto;
+}
+
+/* Description Section */
+.description-section {
+    padding: 20px;
+}
+
+/* Comments Section */
+.comments-section {
+    padding: 20px;
+}
+
+.comments-section h3 {
+    font-size: 18px;
+}
+
+.comment-list {
+    margin-top: 10px;
+}
+
+.single-comment {
+    margin-bottom: 10px;
+}
+
+.commenter {
+    font-weight: bold;
+}
+
+.comment-text {
+    color: #555;
+}
+
+@media screen and (max-width: 768px) {
+    .listing-details {
+        flex-direction: column;
+    }
+
+    .extra-image {
+        width: 100%;
+    }
+}
