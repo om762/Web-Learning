@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User, Listing, Category, ListingImage
+from .models import *
 
 
 def index(request):
@@ -119,4 +119,5 @@ def listing_detail(request, item_id):
     })
 
 def bid(request):
-    pass
+    # TODO Complete the implementation
+    raise NotImplementedError

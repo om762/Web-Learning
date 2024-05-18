@@ -378,113 +378,296 @@ body {
     background: radial-gradient(circle, #56ff4d, #005813);
 }
 
-/* Detail Page */
-/* Reset default styles */
-/* listing Details Section */
-.listing-details {
-    margin: 150px 50px 10px 50px;
+/* Item Section */
+.item-section {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 20px;
-    border: 1px solid #000000;
-}
-
-.listing-image {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.listing-image img {
-    max-width: 100%;
-    height: auto;
-}
-
-.listing-info {
-    flex: 2;
-    height: 100%;
-}
-
-.listing-info h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.category, .owner {
-    font-size: 14px;
-    color: #888;
-}
-
-.current-price {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* Bidding Section */
-.bidding-section {
-    padding: 20px;
-}
-
-.bidding-section h3 {
-    font-size: 18px;
-}
-
-.bidding-section input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    margin: 150px auto;
+    margin-bottom: 70px;
+    background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-.bidding-section button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.item-image img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.item-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Item Info */
+.item-info {
+    flex: 2;
+    padding: 20px;
+}
+
+.item-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.info {
+    font-size: 16px;
+    font-weight: bold;
+    color: #424d55;
+}
+
+/* Description Section */
+.item-description {
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #bed2f7;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.item-info p span {
+    font-weight: bold;
+    color: #515151;
 }
 
 /* Extra Images Section */
 .extra-images {
+    background-color: #dddddd;
     display: flex;
     flex-wrap: wrap;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 20px;
-}
-
-.extra-image {
-    flex: 1;
-    margin: 10px;
+    gap: 10px;
+    margin: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* max-width: 1200px; */
+    animation: fadeIn 1s ease-in-out;
 }
 
 .extra-image img {
     max-height: 350px;
     width: auto;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
-/* Description Section */
-.description-section {
+.extra-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Owner Section */
+.owner-section {
+    margin: 20px;
     padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Comments Section */
-.comments-section {
-    padding: 20px;
+.owner-info h3 {
+    display: inline-block;
+    text-decoration: underline overline;
+    font-size: 22px;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    color: #969696;
 }
 
-.comments-section h3 {
+.owner-section h4 {
     font-size: 18px;
+    margin: 0 0;
+    color: #555;
 }
 
-.comment-list {
-    margin-top: 10px;
+.owner-section .owner-details {
+    display: flex;
+    align-items: center;
+}
+
+.owner-section .owner-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #777;
+}
+
+.owner-section .owner-info {
+    margin-left: 5px;
+}
+
+/* Bidding Section */
+.bidding-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bidding-section h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #707070;
+}
+
+
+.bidding-section .price {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.bidding-form {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.bidding-section .price span{
+    color: #158a0c;
+}
+
+
+.bidding-section input[type="number"] {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 20px;
+    transition: border-color 0.3s;
+}
+
+.bidding-section input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.bidding-section button {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.bidding-section button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.bidding-section button:active {
+    transform: translateY(0);
+}
+
+/* Comment Section */
+.comment-section, .comments-list {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* display: flex; */
+    /* justify-content: center; */
+    /* animation: fadeIn 1s ease-in-out; */
+}
+
+.comment-section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.comment-section input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.comment-section button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.comment-section button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.comments-list {
+    margin-top: 20px;
 }
 
 .single-comment {
     margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
 }
 
 .commenter {
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .comment-text {
@@ -492,7 +675,7 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    .listing-details {
+    .item-info {
         flex-direction: column;
     }
 
