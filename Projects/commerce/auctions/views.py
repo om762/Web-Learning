@@ -2,8 +2,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import F
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from .models import *
@@ -113,11 +113,83 @@ def categories(request):
 def listing_detail(request, item_id):
     listing = Listing.objects.get(pk=item_id)
     images = ListingImage.objects.filter(listing=listing).all()
+    if request.method == "POST":
+        bidding_amount = request.POST.get("bidding_amount")
+
+        try:
+            bidding_amount = int(bidding_amount)
+        except ValueError:
+            return render(request, "auctions/listing.html", {
+                "bidding_amount": bidding_amount,
+                "message": "Invalid bid amount.",
+                "status" :  "error",
+                "listing": listing,
+                "images": images
+            })
+
+        if bidding_amount <= listing.current_price:
+            return render(request, "auctions/listing.html", {
+                "bidding_amount": bidding_amount,
+                "message": "Bid must be higher than the current price.",
+                "status" : "error",
+                "listing": listing,
+                "images": images
+            })
+
+        new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
+        new_bid.save()
+
+        # Update the current price of the listing
+        listing.current_price = bidding_amount
+        listing.save()
+
+        return render(request, "auctions/listing.html", {
+                "message": "Your bid was successfully placed.",
+                "status" : "success",
+                "listing": listing,
+                "images": images
+            })
+
+    listing = Listing.objects.get(pk=item_id)
+    images = ListingImage.objects.filter(listing=listing).all()
     return render(request, "auctions/listing.html", {
         "listing": listing,
         "images": images
     })
 
-def bid(request):
-    # TODO Complete the implementation
-    raise NotImplementedError
+# @login_required(login_url='login')
+# def bid(request):
+#     if request.method == "POST":
+#         listing_id = request.POST.get("listing_id")
+#         bidding_amount = request.POST.get("bidding_amount")
+#         listing = get_object_or_404(Listing, pk=listing_id)
+        
+
+#         try:
+#             bidding_amount = int(bidding_amount)
+#         except ValueError:
+#             return render(request, "auctions/listing.html", {
+#                 "bidding_amount": bidding_amount,
+#                 "message": "Invalid bid amount.",
+#                 "status" :  "error"
+#             })
+
+#         if bidding_amount <= listing.current_price:
+#             return render(request, "auctions/listing.html", {
+#                 "bidding_amount": bidding_amount,
+#                 "message": "Bid must be higher than the current price.",
+#                 "status" : "error"
+#             })
+
+#         new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
+#         new_bid.save()
+
+#         # Update the current price of the listing
+#         listing.current_price = bidding_amount
+#         listing.save()
+
+#         return render(request, "auctions/listing.html", {
+#                 "bidding_amount": bidding_amount,
+#                 "message": "Your bid was successfully placed.",
+#                 "status" : "success"
+#             })

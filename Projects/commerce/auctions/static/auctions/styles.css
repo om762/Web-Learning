@@ -156,7 +156,8 @@ body {
 }
 
 .card-title {
-    font-size: 15px;
+    font-size: 18px;
+    font-family: 'Maiandra GD';
     font-weight: 600;
     margin-bottom: 10px;
 }
@@ -168,10 +169,14 @@ body {
 }
 
 .card-price {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+}
+
+.card-price span{
+    color: #ddb500;
 }
 
 .card-buttons {
@@ -562,6 +567,12 @@ body {
     gap: 10px;
     width: 100%;
     justify-content: center;
+}
+
+.bidding-form label {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .bidding-section .price span{

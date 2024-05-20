@@ -22,7 +22,7 @@
             <div class="card-title">{{ listing.item_name }}</div>
         </div>
         <div class="card-category">{{ listing.category }}</div>
-        <div class="card-price">${{ listing.starting_bid }}</div>
+        <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
         <div class="card-buttons">
             <button class="card-button details"><a href="listing/{{ listing.id }}">Details</a></button>
             {% if user.is_authenticated %}
