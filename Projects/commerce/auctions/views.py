@@ -157,39 +157,4 @@ def listing_detail(request, item_id):
         "images": images
     })
 
-# @login_required(login_url='login')
-# def bid(request):
-#     if request.method == "POST":
-#         listing_id = request.POST.get("listing_id")
-#         bidding_amount = request.POST.get("bidding_amount")
-#         listing = get_object_or_404(Listing, pk=listing_id)
-        
 
-#         try:
-#             bidding_amount = int(bidding_amount)
-#         except ValueError:
-#             return render(request, "auctions/listing.html", {
-#                 "bidding_amount": bidding_amount,
-#                 "message": "Invalid bid amount.",
-#                 "status" :  "error"
-#             })
-
-#         if bidding_amount <= listing.current_price:
-#             return render(request, "auctions/listing.html", {
-#                 "bidding_amount": bidding_amount,
-#                 "message": "Bid must be higher than the current price.",
-#                 "status" : "error"
-#             })
-
-#         new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
-#         new_bid.save()
-
-#         # Update the current price of the listing
-#         listing.current_price = bidding_amount
-#         listing.save()
-
-#         return render(request, "auctions/listing.html", {
-#                 "bidding_amount": bidding_amount,
-#                 "message": "Your bid was successfully placed.",
-#                 "status" : "success"
-#             })
