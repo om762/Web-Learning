@@ -733,9 +733,6 @@ body {
 @media screen and (max-width: 768px) {
     .item-info {
         flex-direction: column;
-    }
-
-    .extra-image {
-        width: 100%;
+        justify-content: center;
     }
 }

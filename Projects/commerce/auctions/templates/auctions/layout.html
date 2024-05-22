@@ -40,4 +40,13 @@
     </nav>
     <div class="content">{% block body %} {% endblock %}</div>
 </body>
+{% if focus_bid_form %}
+    <script>
+        // Scroll to the bid form anchor
+        document.getElementById('bid-form').scrollIntoView({ behavior: 'smooth' });
+
+        // Optionally set focus to the input field
+        document.getElementById('bidding_amount').focus();
+    </script>
+{% endif %}
 </html>
