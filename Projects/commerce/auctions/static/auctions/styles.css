@@ -20,13 +20,11 @@ body {
 .navbar {
     position: fixed;
     top: 5px;
-    left: 5px;
-    width: 99%;
+    width: 100%;
     z-index: 2;
     border-radius: 10px;
     background: rgb(255, 255, 255);
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -504,7 +502,7 @@ body {
 
 .owner-info h3 {
     display: inline-block;
-    text-decoration: underline overline;
+    text-decoration: underline;
     font-size: 22px;
     margin-bottom: 15px;
     margin-top: 0px;
@@ -578,11 +576,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* .bidding-section .price span{
-    background: linear-gradient(45deg, #3bbb3f, #388e3c, #2e7d32, #144517);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-} */
 
 .bidding-section .price span {
     color: #d32f2f;
@@ -603,23 +596,46 @@ body {
 
 
 .message {
-    padding: 15px;
-    margin-bottom: 20px;
+    position: fixed;
+    top: 50px;
+    z-index: 3;
     border-radius: 5px;
-    font-size: 1em;
     text-align: center;
+    animation: fadeOut 6s forwards;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    max-width: 500px;
+    opacity: 1;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .error {
-    background-color: #f8d7da;
+    background-color: #ffd7dbc4;
     color: #721c24;
     border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px 20px;
 }
 
 .success {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 10px 20px;
 }
 
 

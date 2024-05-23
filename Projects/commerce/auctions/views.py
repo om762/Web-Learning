@@ -113,6 +113,7 @@ def categories(request):
 def listing_detail(request, item_id):
     listing = Listing.objects.get(pk=item_id)
     images = ListingImage.objects.filter(listing=listing).all()
+    comments = Comment.objects.filter(listing=listing).order_by(F('created_at').desc())
     if request.method == "POST":
         if request.user.is_authenticated:
             bidding_amount = request.POST.get("bidding_amount")
@@ -126,6 +127,7 @@ def listing_detail(request, item_id):
                     "status" :  "error",
                     "listing": listing,
                     "images": images,
+                    "comments": comments,
                 })
 
             if bidding_amount <= listing.current_price:
@@ -135,7 +137,7 @@ def listing_detail(request, item_id):
                     "status" : "error",
                     "listing": listing,
                     "images": images,
-                    "focus_bid_form": True,  # Flag to focus bid form
+                    "comments":comments,
                 })
 
             new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
@@ -149,21 +151,30 @@ def listing_detail(request, item_id):
                     "message": "Your bid was successfully placed.",
                     "status" : "success",
                     "listing": listing,
-                    "images": images
+                    "images": images,
+                    "comments": comments,
                 })
         else:
             return redirect('login')
 
     listing = Listing.objects.get(pk=item_id)
     images = ListingImage.objects.filter(listing=listing).all()
+    comments = Comment.objects.filter(listing=listing).order_by(F('created_at').desc())
     return render(request, "auctions/listing.html", {
         "listing": listing,
-        "images": images
+        "images": images,
+        "comments":comments,
     })
 
 @login_required
 def add_comment(request):
-    pass
+    text = request.POST.get("comment_text")
+    listing_id = request.POST.get("listing_id")
+    listing = Listing.objects.get(pk=listing_id)
+    commenter = request.user
+    new_comment = Comment(text=text, listing=listing, commenter=commenter)
+    new_comment.save()
+    return redirect(f'listing/{listing_id}#comment')
 
 login_required(login_url='login')
 def action_block():

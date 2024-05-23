@@ -44,19 +44,19 @@
     </div>
 </div>
 
+
 <div class="bidding-section">
     <a name="bid-form" href="#bid-form"></a>
     <h3>Wanna to bid in {{ listing.item_name }}</h3>
     <h2 class="price">Current Price: <span>${{ listing.current_price }}</span></h2>
     <div class="bidding-form">
+        {% if message %}
+            <div class="message">
+                <div class="{{ status }}">{{ message }}</div>
+            </div>
+        {% endif %}
         <form method="POST">
             {% csrf_token %}
-            <input type="hidden" name="listing_id" value="{{ listing.id }}">
-            {% if message %}
-                <div class="message">
-                    <div class="{{ status }}">{{ message }}</div>
-                </div>
-            {% endif %}
             <label for="bidding_amount">Bid Amount: </label>
             <input type="number" id="biddingAmount" name="bidding_amount" placeholder="Enter Bidding Amount" value="{{ bidding_amount|default:'' }}" required>
             <button type="submit">Bid</button>
@@ -73,6 +73,7 @@
         <button type="submit">Submit Comment</button>
     </form>
 </div>
+<a name=comment href="#comment"></a>
 
 <div class="comments-list">
     {% for comment in comments %}
