@@ -166,7 +166,7 @@ def listing_detail(request, item_id):
         "comments":comments,
     })
 
-@login_required
+@login_required(login_url='login')
 def add_comment(request):
     text = request.POST.get("comment_text")
     listing_id = request.POST.get("listing_id")
@@ -175,7 +175,3 @@ def add_comment(request):
     new_comment = Comment(text=text, listing=listing, commenter=commenter)
     new_comment.save()
     return redirect(f'listing/{listing_id}#comment')
-
-login_required(login_url='login')
-def action_block():
-    pass
