@@ -751,7 +751,7 @@ body {
 }
 
 .comment-section input[type="text"]:focus {
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid #0051bc;
 }
 
 .comment-section button {
