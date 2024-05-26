@@ -22,11 +22,21 @@
                     <a href="{% url 'categories' %}">Categories</a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="{% url 'watchlist' %}">Watch List</a>
-                </li>
-                <li class="nav-item"><a href="{% url 'categories' %}">Profile</a></li>
-                <li class="nav-item"><a href="{% url 'logout' %}">logout</a></li>
+                <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
+                <!-- <li class="nav-item"> -->
+                    <a href="{% url 'watchlist' %}" class="wl-btn">
+                        <span><b>Watchlist</b></span>
+                        <span class="badge">8</span>
+                    </a>
+                <!-- </li> -->
+                    <li class="nav-item">
+                        <a href="#" class="profile-link">
+                            <div class="profile-div">
+                                <div class="profile-avatar"><span>{{ user.username|slice:":1"|upper}}</span></div>
+                                <span class="nav-item">Profile</span>
+                            </div>
+                        </a>
+                    </li>
                 {% else %}
                 <button class="nav-button">
                     <a href="{% url 'login' %}">Log In</a>
@@ -40,13 +50,4 @@
     </nav>
     <div class="content">{% block body %} {% endblock %}</div>
 </body>
-{% if focus_bid_form %}
-    <script>
-        // Scroll to the bid form anchor
-        document.getElementById('bid-form').scrollIntoView({ behavior: 'smooth' });
-
-        // Optionally set focus to the input field
-        document.getElementById('bidding_amount').focus();
-    </script>
-{% endif %}
 </html>
