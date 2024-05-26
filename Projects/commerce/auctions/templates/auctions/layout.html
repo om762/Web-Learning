@@ -23,20 +23,18 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
-                <!-- <li class="nav-item"> -->
-                    <a href="{% url 'watchlist' %}" class="wl-btn">
-                        <span><b>Watchlist</b></span>
-                        <span class="badge">8</span>
+                <a href="{% url 'watchlist' %}" class="wl-btn">
+                    <span><b>Watchlist</b></span>
+                    <span class="badge">8</span>
+                </a>
+                <li class="nav-item">
+                    <a href="#" class="profile-link">
+                        <div class="profile-div">
+                            <div class="profile-avatar"><span>{{ user.username|slice:":1"|upper}}</span></div>
+                            <span class="nav-item">Profile</span>
+                        </div>
                     </a>
-                <!-- </li> -->
-                    <li class="nav-item">
-                        <a href="#" class="profile-link">
-                            <div class="profile-div">
-                                <div class="profile-avatar"><span>{{ user.username|slice:":1"|upper}}</span></div>
-                                <span class="nav-item">Profile</span>
-                            </div>
-                        </a>
-                    </li>
+                </li>
                 {% else %}
                 <button class="nav-button">
                     <a href="{% url 'login' %}">Log In</a>

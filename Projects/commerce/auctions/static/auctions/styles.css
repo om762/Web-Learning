@@ -82,19 +82,33 @@ body {
 }
 
 .wl-btn {
-    background: linear-gradient(to right, #0049ff, #8ed0ff);
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
     color: white;
     text-decoration: none;
-    margin-right: 40px;
-    padding: 10px 20px;
-    display: inline-block;
     border-radius: 8px;
-    position: relative;
-    transition: background 0.9s ease; /* Add this line */
+    margin-right: 40px;
+    background: linear-gradient(to right, #0049ff, #8ed0ff);
+    z-index: 1;
 }
 
-.wl-btn:hover {
+.wl-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(to right, #8ed0ff, #0049ff);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    z-index: -1;
+    border-radius: 8px;
+}
+
+.wl-btn:hover::before {
+    opacity: 1;
 }
 
 .wl-btn .badge {
@@ -104,7 +118,14 @@ body {
     padding: 5px 9px;
     border-radius: 50%;
     background: #0049ff;
+    z-index: 2;
 }
+
+.wl-btn span {
+    position: relative;
+    z-index: 1;
+}
+
 
 
 .profile-div {
