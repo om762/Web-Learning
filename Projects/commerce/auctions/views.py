@@ -108,7 +108,26 @@ def create_listing(request):
     
 
 def categories(request):
-    pass
+    categories = Category.objects.all()
+    return render(request, "auctions/categories.html", {
+        "categories": categories
+    })
+
+def category(request, type):
+    categories = Category.objects.all()
+    category = Category.objects.filter(type=type).first()
+    
+    if category:
+        listings = Listing.objects.filter(category=category)
+        return render(request, "auctions/category.html", {
+            "listings": listings,
+            "category": category
+        })
+    
+    return render(request, "auctions/categories.html", {
+        "categories": categories
+    })
+
 
 def listing_detail(request, item_id):
     listing = Listing.objects.get(pk=item_id)

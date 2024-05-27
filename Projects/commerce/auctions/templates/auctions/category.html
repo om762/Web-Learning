@@ -1,18 +1,15 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
 
+{% block title %}{{ category.type }}{% endblock title %}
 
 {% block body %}
 <div class="head-div">
-    <h2 class="page-heading">Active Listings</h2>
-    {% if user.is_authenticated %}
-    <button class="new-button" style="display: inline;">
-        <a href="{% url 'create_listing' %}">Create Listing</a>
-    </button>
-    {% endif %}
+    <h2 class="page-heading">{{ category }}</h2>
 </div>
 
 
-{% for listing in active_listings %}
+{% for listing in listings %}
 <div class="card">
     <div class="card-image">
         <img src="{{ listing.image_url }}" alt="Item Image">

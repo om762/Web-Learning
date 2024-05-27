@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block title %}Categories{% endblock title %}
+
+
+{% block body %}
+<div class="head-div">
+    <h2 class="page-heading">Listing Categories</h2>
+</div>
+
+
+{% for category in categories %}
+
+<a href="category/{{ category.type }}" style="color: black;">
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ category.image_url }}" alt="Item Image">
+        </div>
+        <div class="card-details">
+            <div class="card-title-div">
+                <div class="card-title">{{ category.type }}</div>
+            </div>
+        </div>
+    </div>
+</a>
+{% endfor %}
+{% endblock %}
