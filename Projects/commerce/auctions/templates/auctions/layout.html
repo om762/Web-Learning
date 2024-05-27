@@ -36,12 +36,8 @@
                     </a>
                 </li>
                 {% else %}
-                <button class="nav-button">
-                    <a href="{% url 'login' %}">Log In</a>
-                </button>
-                <button class="nav-button">
-                    <a href="{% url 'register' %}">Register</a>
-                </button>
+                    <a class="nav-button" href="{% url 'login' %}">Log In</a>
+                    <a class="nav-button" href="{% url 'register' %}">Register</a>
                 {% endif %}
             </ul>
         </div>

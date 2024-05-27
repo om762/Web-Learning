@@ -5,9 +5,7 @@
 <div class="head-div">
     <h2 class="page-heading">Active Listings</h2>
     {% if user.is_authenticated %}
-    <button class="new-button" style="display: inline;">
-        <a href="{% url 'create_listing' %}">Create Listing</a>
-    </button>
+    <a class="new-button" href="{% url 'create_listing' %}">Create Listing</a>
     {% endif %}
 </div>
 
@@ -24,9 +22,9 @@
         <div class="card-category">{{ listing.category }}</div>
         <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
         <div class="card-buttons">
-            <button class="card-button details"><a href="/listing/{{ listing.id }}">Details</a></button>
+            <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
             {% if user.is_authenticated %}
-            <button class="card-button watchlist"><a href="#">Add to Watchlist</a></button>
+            <a class="card-button watchlist" href="#">Add to Watchlist</a>
             {% endif %}
         </div>
     </div>
