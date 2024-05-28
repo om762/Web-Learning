@@ -269,9 +269,9 @@ body {
 
 .card-buttons {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    align-content: center;
 }
 
 .card-button {
