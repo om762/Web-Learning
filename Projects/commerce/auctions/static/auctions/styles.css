@@ -270,6 +270,8 @@ body {
 .card-buttons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 
 .card-button {
@@ -285,19 +287,22 @@ body {
 }
 
 .card-button.details {
-    background-color: #0095ff;
+    background-color: #3498db;
+    color: white;
 }
 
 .card-button.watchlist {
-    background-color: #00b100;
+    border: 1px solid #78bbff;
 }
 
 .card-button.details:hover {
-    background-color: #6aaaff;
+    background-color: #2980b9;
 }
 
 .card-button.watchlist:hover {
-    background-color: #a0e188;
+    color: white;
+    background: linear-gradient(45deg, #799fff, #2ecc71);
+    background-color: #0a2744;
 }
 
 .form-body {
@@ -487,7 +492,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
-    animation: fadeIn 1s ease-in-out;
 }
 
 /* Fade-in animation */
@@ -530,6 +534,74 @@ body {
     color: #424d55;
 }
 
+.icon {
+    fill: #000000;
+    width: 20px;
+    height: 20px;
+    padding: 7px;
+}
+
+.watchlist-button, .remove-button {
+    display: inline-flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    padding: 3px 7px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.watchlist-button {
+    background: linear-gradient(135deg, #a777e3, #6e8efb);;
+}
+
+.watchlist-button:hover {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.watchlist-button:before, .remove-button:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.75s ease-in-out;
+    border-radius: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%) scale(0.1);
+}
+
+.watchlist-button:hover:before, .remove-button:hover:before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.watchlist-button span, .remove-button span {
+    z-index: 1;
+}
+
+.remove-button {
+    background: linear-gradient(135deg, #ff6f61, #de6262);
+}
+
+.remove-button:hover {
+    background: linear-gradient(135deg, #de6262, #ff6f61);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.remove-button:before {
+    background: rgba(255, 0, 0, 0.15);
+}
+
 /* Description Section */
 .item-description {
     padding: 20px;
@@ -561,7 +633,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* max-width: 1200px; */
-    animation: fadeIn 1s ease-in-out;
+    /* animation: fadeIn 1s ease-in-out; */
 }
 
 .extra-image img {

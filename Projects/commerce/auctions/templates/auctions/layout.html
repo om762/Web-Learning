@@ -25,7 +25,7 @@
                 <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
                 <a href="{% url 'watchlist' %}" class="wl-btn">
                     <span><b>Watchlist</b></span>
-                    <span class="badge">8</span>
+                    <span class="badge">{{ watchlist_count|default:"0" }}</span>
                 </a>
                 <li class="nav-item">
                     <a href="#" class="profile-link">

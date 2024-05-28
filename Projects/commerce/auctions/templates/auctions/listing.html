@@ -13,6 +13,22 @@
     <div class="item-info">
         <h1>{{ listing.item_name }}</h1>
         <p class="info">Category: {{ listing.category }} <br>Starting Price: ${{ listing.starting_bid }}</p>
+
+        <form action="{% url 'watchlist' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="listing_id" value="{{ listing.id }}">
+            {% if is_in_watchlist %}            
+            <button type="submit" class="remove-button">
+                <img class="icon" src="{% static "auctions/images/xmark-solid.svg" %}" alt="">
+                <span>Remove from Watchlist</span>
+            </button>
+            {% else %}
+            <button type="submit" class="watchlist-button">
+                <img class="icon" src="{% static "auctions/images/white_star.svg" %}" alt="">
+                <span>Add to Watchlist</span>
+            </button>
+            {% endif %}
+        </form>
         <div class="item-description">
             <p>{{ listing.description }}</p>
         </div>
@@ -52,9 +68,10 @@
                 <div class="{{ status }}">{{ message }}</div>
             </div>
         {% endif %}
-        <form method="POST">
+        <form method="POST" action="{% url 'bid' %}">
             {% csrf_token %}
             <label for="bidding_amount">Bid Amount: </label>
+            <input type="hidden" name="listing_id" value="{{ listing.id }}">
             <input type="number" id="biddingAmount" name="bidding_amount" placeholder="Enter Bidding Amount" value="{{ bidding_amount|default:'' }}" required>
             <button type="submit">Bid</button>
         </form>

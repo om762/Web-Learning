@@ -1,11 +1,11 @@
 {% extends "auctions/layout.html" %}
 {% load static %}
 
-{% block title %}{{ category.type }}{% endblock title %}
+{% block title %}Watchlist{% endblock title %}
 
 {% block body %}
 <div class="head-div">
-    <h2 class="page-heading">{{ category }}</h2>
+    <h2 class="page-heading">{{ request.user }}'s Watchlist</h2>
 </div>
 
 

@@ -22,10 +22,10 @@
         <div class="card-category">{{ listing.category }}</div>
         <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
         <div class="card-buttons">
-            <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
             {% if user.is_authenticated %}
             <a class="card-button watchlist" href="#">Add to Watchlist</a>
             {% endif %}
+            <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
         </div>
     </div>
 </div>
