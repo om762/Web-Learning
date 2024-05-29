@@ -21,10 +21,18 @@
         <div class="card-category">{{ listing.category }}</div>
         <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
         <div class="card-buttons">
-            {% if user.is_authenticated %}
-            <a class="card-button watchlist" href="#">Add to Watchlist</a>
-            {% endif %}
             <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
+            {% if user.is_authenticated %}
+            <form action="{% url 'add_to_watchlist' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                {% if listing in watchlist %}
+                <button type="submit" class="card-button watchlist remove">Remove from Watchlist</button>
+                {% else %}
+                <button type="submit" class="card-button watchlist add">Add to Watchlist</button>
+                {% endif %}
+            </form>
+            {% endif %}
         </div>
     </div>
 </div>

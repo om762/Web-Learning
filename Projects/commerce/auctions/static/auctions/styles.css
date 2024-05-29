@@ -173,8 +173,6 @@ body {
     display: inline-block;
 }
 
-
-
 .new-button {
     color: white;
     font-size: 18px;
@@ -191,7 +189,6 @@ body {
 .new-button:hover {
     background-color: #56bd5e;
 }
-
 
 .card {
     display: inline-block;
@@ -283,7 +280,7 @@ body {
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.801);
+    color: rgb(0, 0, 0);
 }
 
 .card-button.details {
@@ -292,17 +289,26 @@ body {
 }
 
 .card-button.watchlist {
-    border: 1px solid #78bbff;
+    border: 1px solid #000000;
+    background-color: white;
+}
+
+.card-button.watchlist:hover {
+    color: white;
+    padding: 11px 21px;
+    border: none;
 }
 
 .card-button.details:hover {
     background-color: #2980b9;
 }
 
-.card-button.watchlist:hover {
-    color: white;
+.card-button.watchlist.add:hover {
     background: linear-gradient(45deg, #799fff, #2ecc71);
-    background-color: #0a2744;
+}
+
+.card-button.watchlist.remove:hover {
+    background: linear-gradient(45deg, #ff6f61, #de6262);
 }
 
 .form-body {

@@ -3,6 +3,7 @@ from django.db.models import F
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -10,14 +11,18 @@ from .models import *
 
 
 def index(request):
-        if request.user.is_authenticated:
-            watchlist_count = Watchlist.objects.filter(user=request.user).count()
-        else:
-            watchlist_count = 0
-        active_listings = Listing.objects.filter(active=True).order_by(F('created_at').desc())
-        return render(request, "auctions/index.html", {
-        "active_listings" : active_listings,
-        "watchlist_count":watchlist_count
+    watchlist = None
+    if request.user.is_authenticated:
+        watchlist = Watchlist.objects.filter(user=request.user)
+        watchlist = [item.listing for item in watchlist]
+        watchlist_count = len(watchlist)
+    else:
+        watchlist_count = 0
+    active_listings = Listing.objects.filter(active=True).order_by(F('created_at').desc())
+    return render(request, "auctions/index.html", {
+    "active_listings" : active_listings,
+    "watchlist_count":watchlist_count,
+    "watchlist": watchlist
     })
 
 
@@ -127,21 +132,25 @@ def categories(request):
 def category(request, type):
     categories = Category.objects.all()
     category = Category.objects.filter(type=type).first()
-    
+    watchlist = None
     if category:
+        if request.user.is_authenticated:
+            watchlist = Watchlist.objects.filter(user=request.user)
+            watchlist = [item.listing for item in watchlist]
+            watchlist_count = len(watchlist)
+        else:
+            watchlist_count = 0
         listings = Listing.objects.filter(category=category)
         return render(request, "auctions/category.html", {
             "listings": listings,
-            "category": category
+            "category": category,
+            "watchlist": watchlist,
+            "watchlist_count": watchlist_count
         })
-    
-    if request.user.is_authenticated:
-        watchlist_count = Watchlist.objects.filter(user=request.user).count()
-    else:
-        watchlist_count = 0
+
     return render(request, "auctions/categories.html", {
         "categories": categories,
-        "watchlist_count":watchlist_count
+        "watchlist_count":watchlist_count,
     })
 
 
@@ -226,24 +235,29 @@ def add_comment(request):
         return redirect(f'/listing/{listing_id}#comment')
 
 @login_required(login_url='login')
-def watchlist(request):
-    if request.method == "POST":
-        listing_id = request.POST.get("listing_id")
-        listing = Listing.objects.get(pk=listing_id)
-        
-        if Watchlist.objects.filter(user=request.user, listing=listing).exists():
-            Watchlist.objects.get(user=request.user, listing=listing).delete()
-            return redirect(f"/listing/{listing_id}")
-        
+@require_POST
+def add_to_watchlist(request):
+    listing_id = request.POST.get("listing_id")
+    listing = Listing.objects.get(pk=listing_id)
+    
+    if Watchlist.objects.filter(user=request.user, listing=listing).exists():
+        Watchlist.objects.get(user=request.user, listing=listing).delete()
+    else:
         Watchlist(user=request.user, listing=listing).save()
-        return redirect(f"/listing/{listing_id}")
 
-    watchlist = Watchlist.objects.filter(user=request.user)
-    listings = [item.listing for item in watchlist]
+    referer = request.META.get('HTTP_REFERER', '/')
+    return redirect(referer)
+
+@login_required(login_url='login')
+def watchlist(request):
+    watchlist_items = Watchlist.objects.filter(user=request.user)
+    listings = [item.listing for item in watchlist_items]
+    watchlist = [item.listing for item in watchlist_items]
     
     watchlist_count = len(listings)
     
     return render(request, "auctions/watchlist.html", {
         "listings": listings,
-        "watchlist_count": watchlist_count
+        "watchlist_count": watchlist_count,
+        "watchlist": watchlist
     })

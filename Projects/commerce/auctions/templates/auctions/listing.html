@@ -14,7 +14,7 @@
         <h1>{{ listing.item_name }}</h1>
         <p class="info">Category: {{ listing.category }} <br>Starting Price: ${{ listing.starting_bid }}</p>
 
-        <form action="{% url 'watchlist' %}" method="post">
+        <form action="{% url 'add_to_watchlist' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="listing_id" value="{{ listing.id }}">
             {% if is_in_watchlist %}            
