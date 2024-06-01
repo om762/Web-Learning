@@ -44,6 +44,7 @@ body {
 }
 
 .logo a {
+    margin-left: 10px;
     font-size: 35px;
     font-weight: 600;
     color: rgb(0, 0, 0);
@@ -158,9 +159,7 @@ body {
 }
 
 .head-div {
-    margin-top: 100px;
-    margin-left: 40px;
-    margin-bottom: 10px;
+    margin: 85px auto 20px;
     width: fit-content;
     border-bottom: 3px solid rgb(0, 0, 0);
     padding: 5px;
@@ -175,6 +174,7 @@ body {
 
 .new-button {
     color: white;
+    margin: 0px 15px;
     font-size: 18px;
     font-weight: bold;
     justify-self: center;
@@ -487,6 +487,7 @@ body {
 
 /* Item Section */
 .item-section {
+    position: relative; /* Added to position the sold-tag correctly */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -500,15 +501,36 @@ body {
     max-width: 1200px;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+.sold-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: pulse 1s infinite;
+}
+
+/* Pulse animation for attention */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
     }
-    to {
-        opacity: 1;
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
     }
 }
+
+
+
 
 .item-image img {
     max-width: 500px;
@@ -547,6 +569,12 @@ body {
     padding: 7px;
 }
 
+.item-section-buttons {
+    display: flex;
+    justify-content: space-between;
+
+}
+
 .watchlist-button, .remove-button {
     display: inline-flex;
     align-items: center;
@@ -565,11 +593,11 @@ body {
 }
 
 .watchlist-button {
-    background: linear-gradient(135deg, #a777e3, #6e8efb);;
+    background: linear-gradient(135deg, #a777e3, #6e8efb);
 }
 
 .watchlist-button:hover {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -608,6 +636,30 @@ body {
     background: rgba(255, 0, 0, 0.15);
 }
 
+
+/* New styles for 'close_bidding' button */
+.close-bidding-button {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    justify-self: center;
+    padding: 3px 7px;
+    border: 2px solid #c72c41;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #c72c41;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.close-bidding-button:hover {
+    background-color: #ff4c61;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
 /* Description Section */
 .item-description {
     padding: 20px;
@@ -638,8 +690,6 @@ body {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* max-width: 1200px; */
-    /* animation: fadeIn 1s ease-in-out; */
 }
 
 .extra-image img {
@@ -729,6 +779,29 @@ body {
     font-weight: bold;
     margin-bottom: 15px;
 }
+
+/* Bidding Closed Section */
+.bidding-closed {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffe6e6;
+    border: 1px solid #ff9999;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bidding-closed h3 {
+    color: #d9534f;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.bidding-closed .price {
+    font-size: 22px;
+    color: #333;
+}
+
 
 .bidding-form {
     display: inline-flex;

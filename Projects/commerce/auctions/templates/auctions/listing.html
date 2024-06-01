@@ -3,36 +3,50 @@
 
 {% block title %}{{ listing.item_name }}{% endblock title %}
 
-
 {% block body %}
 
 <div class="item-section">
+    {% if not listing.active %}
+    <div class="sold-tag">Sold</div>
+    {% endif %}
     <div class="item-image">
         <img src="{{ listing.image_url }}" alt="listing Image">
     </div>
     <div class="item-info">
         <h1>{{ listing.item_name }}</h1>
         <p class="info">Category: {{ listing.category }} <br>Starting Price: ${{ listing.starting_bid }}</p>
+        <div class="item-section-buttons">
+            <form action="{% url 'add_to_watchlist' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                {% if is_in_watchlist %}
+                    <button type="submit" class="remove-button">
+                        <img class="icon" src="{% static 'auctions/images/xmark-solid.svg' %}" alt="">
+                    <span>Remove from Watchlist</span>
+                    </button>
+                {% else %}
+                    <button type="submit" class="watchlist-button">
+                        <img class="icon" src="{% static 'auctions/images/white_star.svg' %}" alt="">
+                        <span>Add to Watchlist</span>
+                    </button>
+                {% endif %}
+            </form>
 
-        <form action="{% url 'add_to_watchlist' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="listing_id" value="{{ listing.id }}">
-            {% if is_in_watchlist %}            
-            <button type="submit" class="remove-button">
-                <img class="icon" src="{% static "auctions/images/xmark-solid.svg" %}" alt="">
-                <span>Remove from Watchlist</span>
-            </button>
-            {% else %}
-            <button type="submit" class="watchlist-button">
-                <img class="icon" src="{% static "auctions/images/white_star.svg" %}" alt="">
-                <span>Add to Watchlist</span>
-            </button>
+            {% if user == listing.owner and listing.active %}
+            <form action="{% url 'close_bidding' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                <button type="submit" class="close-bidding-button">
+                        <img class="icon" src="{% static 'auctions/images/lock.svg' %}" alt="">
+                        <span>CLOSE BIDDING</span>
+                    </button>
+                </form>
             {% endif %}
-        </form>
+        </div>
         <div class="item-description">
             <p>{{ listing.description }}</p>
         </div>
-        <p>Created On: <span>{{listing.created_at}}</span></p>
+        <p>Created On: <span>{{ listing.created_at }}</span></p>
     </div>
 </div>
 
@@ -51,16 +65,16 @@
         </div>
         <div class="owner-info">
             <h3>Owner</h3>
-            <h4>Name: {{ listing.owner }}</h5>
-            <h4>Email: {{ listing.owner.email }}</h5>
+            <h4>Name: {{ listing.owner }}</h4>
+            <h4>Email: {{ listing.owner.email }}</h4>
         </div>
     </div>
 </div>
 
-
+{% if listing.active %}
 <div class="bidding-section">
     <a name="bid-form" href="#bid-form"></a>
-    <h3>Wanna to bid in {{ listing.item_name }}</h3>
+    <h3>Wanna bid on {{ listing.item_name }}</h3>
     <h2 class="price">Current Price: <span>${{ listing.current_price }}</span></h2>
     <div class="bidding-form">
         {% if message %}
@@ -77,12 +91,19 @@
         </form>
     </div>
 </div>
+{% else %}
+<div class="bidding-closed">
+    <h3>Bidding for this item is closed.</h3>
+    <h2 class="price">Sold for: <span>${{ listing.current_price }}</span></h2>
+    <h2 class="price">Sold to: <span>{{ listing.winner }}</span></h2>
+</div>
+{% endif %}
 
 <div class="comment-section">
     <h3>Comment</h3>
     <div class="comment-box">
         <div class="user-info">
-            <div class="comment-avatar">{{ user.username|slice:":1"|upper}}</div>
+            <div class="comment-avatar">{{ user.username|slice:":1"|upper }}</div>
             <div class="username">{{ user.username }}</div>
         </div>
         <form action="{% url 'add_comment' %}" method="post">
@@ -97,6 +118,7 @@
 </div>
 <a name=comment href="#comment"></a>
 
+{% if comments %}
 <div class="comments-list">
     {% for comment in comments %}
     <div class="single-comment">
@@ -105,5 +127,6 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
 
 {% endblock body %}

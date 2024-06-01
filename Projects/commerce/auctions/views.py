@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from .models import *
@@ -261,3 +261,22 @@ def watchlist(request):
         "watchlist_count": watchlist_count,
         "watchlist": watchlist
     })
+    
+
+@login_required(login_url='login')
+def close_bidding(request):
+    if request.method == "POST":
+        listing_id = request.POST.get("listing_id")
+        listing = get_object_or_404(Listing, pk=listing_id)
+
+        if request.user == listing.owner:
+            listing.active = False
+            listing.save()
+
+            top_bid = Bid.objects.filter(listing=listing).order_by('-amount').first()
+            if top_bid:
+                listing.winner = top_bid.bidder
+                listing.current_price = top_bid.amount
+                listing.save()
+
+        return redirect('listing_detail', item_id=listing_id)

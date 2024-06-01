@@ -14,6 +14,7 @@ class Listing(models.Model):
     current_price = models.IntegerField()
     category = models.ForeignKey('Category', blank=True, on_delete=models.CASCADE, related_name="items")
     active = models.BooleanField(default=True)
+    winner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='won_listings')
     image_url = models.URLField(blank=True)
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
