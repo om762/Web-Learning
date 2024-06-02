@@ -1,0 +1,136 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block title %}{{ user.username }}'s Profile{% endblock title %}
+
+{% block body %}
+
+<div class="head-div">
+    <h2 class="page-heading">{{ user.username }}'s Profile</h2>
+</div>
+
+<div class="profile-container">
+    <div class="profile-section">
+        <h2>User Details</h2>
+        <div class="profile-details">
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Date Joined:</strong> {{ user.date_joined }}</p>
+                <form action="{% url 'logout' %}" method="post" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M16 13v-2H8V7l-5 5 5 5v-4zM18 19H9v2h9c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2H9v2h9v14z"/>
+                        </svg>
+                        Logout
+                    </button>
+                </form>
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h2>Your Listings</h2>
+        <div class="listings-container">
+            {% for listing in listings %}
+            <div class="card">
+                {% if not listing.active %}
+                <div class="card-sold-tag">Sold</div>
+                {% endif %}
+                <div class="card-image">
+                    <img src="{{ listing.image_url }}" alt="Item Image">
+                </div>
+                <div class="card-details">
+                    <div class="card-title-div">
+                        <div class="card-title">{{ listing.item_name }}</div>
+                    </div>
+                    <div class="card-category">{{ listing.category }}</div>
+                    <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
+                    <div class="card-buttons">
+                        <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'add_to_watchlist' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                            {% if listing in watchlist %}
+                            <button type="submit" class="card-button watchlist remove">Remove from Watchlist</button>
+                            {% else %}
+                            <button type="submit" class="card-button watchlist add">Add to Watchlist</button>
+                            {% endif %}
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>You have no listings.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h2>Your Watchlist</h2>
+        <div class="listings-container">
+            {% for item in watchlist %}
+            <div class="card">
+                {% if not item.active %}
+                <div class="card-sold-tag">Sold</div>
+                {% endif %}
+                <div class="card-image">
+                    <img src="{{ item.image_url }}" alt="Item Image">
+                </div>
+                <div class="card-details">
+                    <div class="card-title-div">
+                        <div class="card-title">{{ item.item_name }}</div>
+                    </div>
+                    <div class="card-category">{{ item.category }}</div>
+                    <div class="card-price">Current Price: <span>${{ item.current_price }}</span></div>
+                    <div class="card-buttons">
+                        <a class="card-button details" href="/listing/{{ item.id }}">Details</a>
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'add_to_watchlist' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="listing_id" value="{{ item.id }}">
+                            {% if item in watchlist %}
+                            <button type="submit" class="card-button watchlist remove">Remove from Watchlist</button>
+                            {% else %}
+                            <button type="submit" class="card-button watchlist add">Add to Watchlist</button>
+                            {% endif %}
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>Your watchlist is empty.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h2>Listings You Won</h2>
+        <div class="listings-container">
+            {% for won in won_listings %}
+            <div class="card">
+                {% if not won.active %}
+                <div class="card-sold-tag">Sold</div>
+                {% endif %}
+                <div class="card-image">
+                    <img src="{{ won.image_url }}" alt="Item Image">
+                </div>
+                <div class="card-details">
+                    <div class="card-title-div">
+                        <div class="card-title">{{ won.item_name }}</div>
+                    </div>
+                    <div class="card-category">{{ won.category }}</div>
+                    <div class="card-price">Winning Price: <span>${{ won.current_price }}</span></div>
+                    <div class="card-buttons">
+                        <a class="card-button details" href="/listing/{{ won.id }}">Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>You haven't won any listings.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

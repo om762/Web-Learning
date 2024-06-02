@@ -11,6 +11,9 @@
 
 {% for listing in listings %}
 <div class="card">
+    {% if not listing.active %}
+    <div class="card-sold-tag">Sold</div>
+    {% endif %}
     <div class="card-image">
         <img src="{{ listing.image_url }}" alt="Item Image">
     </div>

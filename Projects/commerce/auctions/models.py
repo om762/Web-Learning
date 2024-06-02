@@ -70,7 +70,7 @@ class Category(models.Model):
 
 class Watchlist(models.Model):
     id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='watchlist')
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
 
     def __str__(self) -> str:

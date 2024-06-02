@@ -25,6 +25,21 @@ def index(request):
     "watchlist": watchlist
     })
 
+def all_listings(request):
+    watchlist = None
+    if request.user.is_authenticated:
+        watchlist = Watchlist.objects.filter(user=request.user)
+        watchlist = [item.listing for item in watchlist]
+        watchlist_count = len(watchlist)
+    else:
+        watchlist_count = 0
+    all_listings = Listing.objects.all().order_by(F('created_at').desc())
+    return render(request, "auctions/all_listing.html", {
+    "all_listings" : all_listings,
+    "watchlist_count":watchlist_count,
+    "watchlist": watchlist
+    })
+
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -154,22 +169,28 @@ def category(request, type):
     })
 
 
+from django.shortcuts import render, get_object_or_404
+from .models import Listing, Bid, ListingImage, Comment, Watchlist
+
 def listing_detail(request, item_id):
-    listing = Listing.objects.get(pk=item_id)
+    listing = get_object_or_404(Listing, pk=item_id)
     images = ListingImage.objects.filter(listing=listing).all()
-    comments = Comment.objects.filter(listing=listing).order_by(F('created_at').desc())
+    comments = Comment.objects.filter(listing=listing).order_by('-created_at')
+    top_bids = Bid.objects.filter(listing=item_id).order_by('-amount')[:5]
     is_in_watchlist = False
     if request.user.is_authenticated:
         is_in_watchlist = Watchlist.objects.filter(user=request.user, listing=listing).exists()
         watchlist_count = Watchlist.objects.filter(user=request.user).count()
     else:
         watchlist_count = 0
+    
     return render(request, "auctions/listing.html", {
         "listing": listing,
         "images": images,
-        "comments":comments,
+        "comments": comments,
         "is_in_watchlist": is_in_watchlist,
-        "watchlist_count": watchlist_count
+        "watchlist_count": watchlist_count,
+        "top_bids": top_bids
     })
 
 @login_required(login_url='login')
@@ -181,6 +202,7 @@ def bid(request):
         images = ListingImage.objects.filter(listing=listing).all()
         comments = Comment.objects.filter(listing=listing).order_by(F('created_at').desc())
         watchlist_count = Watchlist.objects.filter(user=request.user).count()
+        top_bids = Bid.objects.filter(listing=int(listing_id)).order_by('-amount')[:5]
 
         try:
             bidding_amount = int(bidding_amount)
@@ -192,7 +214,8 @@ def bid(request):
                 "listing": listing,
                 "images": images,
                 "comments": comments,
-                "watchlist_count": watchlist_count
+                "watchlist_count": watchlist_count,
+                "top_bids": top_bids
             })
 
         if bidding_amount <= listing.current_price:
@@ -203,7 +226,8 @@ def bid(request):
                 "listing": listing,
                 "images": images,
                 "comments":comments,
-                "watchlist_count": watchlist_count
+                "watchlist_count": watchlist_count,
+                "top_bids": top_bids
             })
 
         new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
@@ -220,7 +244,8 @@ def bid(request):
                         "listing": listing,
                         "images": images,
                         "comments": comments,
-                        "watchlist_count":watchlist_count
+                        "watchlist_count":watchlist_count,
+                        "top_bids": top_bids
                     })
 
 @login_required(login_url='login')
@@ -280,3 +305,17 @@ def close_bidding(request):
                 listing.save()
 
         return redirect('listing_detail', item_id=listing_id)
+
+@login_required(login_url='login')
+def profile_view(request):
+    user = request.user
+    watchlist = [item.listing for item in Watchlist.objects.filter(user=user)]
+    listings = Listing.objects.filter(owner=user)
+    won_listings = user.won_listings.all()
+    return render(request, 'auctions/profile.html', {
+        'user': user,
+        'watchlist': watchlist,
+        "watchlist_count": len(watchlist),
+        'listings': listings,
+        'won_listings': won_listings
+    })

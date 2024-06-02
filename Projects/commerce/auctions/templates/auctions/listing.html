@@ -71,33 +71,51 @@
     </div>
 </div>
 
-{% if listing.active %}
-<div class="bidding-section">
-    <a name="bid-form" href="#bid-form"></a>
-    <h3>Wanna bid on {{ listing.item_name }}</h3>
-    <h2 class="price">Current Price: <span>${{ listing.current_price }}</span></h2>
-    <div class="bidding-form">
-        {% if message %}
-            <div class="message">
-                <div class="{{ status }}">{{ message }}</div>
-            </div>
-        {% endif %}
-        <form method="POST" action="{% url 'bid' %}">
-            {% csrf_token %}
-            <label for="bidding_amount">Bid Amount: </label>
-            <input type="hidden" name="listing_id" value="{{ listing.id }}">
-            <input type="number" id="biddingAmount" name="bidding_amount" placeholder="Enter Bidding Amount" value="{{ bidding_amount|default:'' }}" required>
-            <button type="submit">Bid</button>
-        </form>
+<div class="bid-and-top-bidder">
+
+    {% if listing.active %}
+    <div class="bidding-section">
+        <a name="bid-form" href="#bid-form"></a>
+        <h3>Wanna bid on {{ listing.item_name }}</h3>
+        <h2 class="price">Current Price: <span>${{ listing.current_price }}</span></h2>
+        <div class="bidding-form">
+            {% if message %}
+                <div class="message">
+                    <div class="{{ status }}">{{ message }}</div>
+                </div>
+            {% endif %}
+            <form method="POST" action="{% url 'bid' %}">
+                {% csrf_token %}
+                <label for="bidding_amount">Bid Amount: </label>
+                <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                <input type="number" id="biddingAmount" name="bidding_amount" placeholder="Enter Bidding Amount" value="{{ bidding_amount|default:'' }}" required>
+                <button type="submit">Bid</button>
+            </form>
+        </div>
     </div>
+    {% else %}
+    <div class="bidding-closed">
+        <h3>Bidding for this item is closed.</h3>
+        <h2 class="price">Sold for: <span>${{ listing.current_price }}</span></h2>
+        <h2 class="price">Sold to: <span>{{ listing.winner }}</span></h2>
+    </div>
+    {% endif %}
+
+    <div class="top-bidders-section">
+        <h3>Top 5 Bidders</h3>
+        <ol>
+            {% for bid in top_bids %}
+            <li>
+                <span class="bidder-name">{{ bid.bidder }}</span>
+                <span class="bidder-amount">${{ bid.amount }}</span>
+            </li>
+            {% empty %}
+            <li>No bids yet.</li>
+            {% endfor %}
+        </ol>
+    </div>    
 </div>
-{% else %}
-<div class="bidding-closed">
-    <h3>Bidding for this item is closed.</h3>
-    <h2 class="price">Sold for: <span>${{ listing.current_price }}</span></h2>
-    <h2 class="price">Sold to: <span>{{ listing.winner }}</span></h2>
-</div>
-{% endif %}
+
 
 <div class="comment-section">
     <h3>Comment</h3>
