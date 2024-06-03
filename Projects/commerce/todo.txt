@@ -1,1 +1,1 @@
-1. List of top 5 Bidder side to the bidding form.
+1. Optimize the models and views accordingly. 

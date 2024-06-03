@@ -71,19 +71,18 @@
     </div>
 </div>
 
+{% if message %}
+    <div class="message">
+        <div class="{{ status }}">{{ message }}</div>
+    </div>
+{% endif %}
 <div class="bid-and-top-bidder">
-
     {% if listing.active %}
     <div class="bidding-section">
         <a name="bid-form" href="#bid-form"></a>
         <h3>Wanna bid on {{ listing.item_name }}</h3>
         <h2 class="price">Current Price: <span>${{ listing.current_price }}</span></h2>
         <div class="bidding-form">
-            {% if message %}
-                <div class="message">
-                    <div class="{{ status }}">{{ message }}</div>
-                </div>
-            {% endif %}
             <form method="POST" action="{% url 'bid' %}">
                 {% csrf_token %}
                 <label for="bidding_amount">Bid Amount: </label>

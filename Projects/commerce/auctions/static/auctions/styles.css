@@ -17,15 +17,13 @@ body {
     text-decoration: none;
 }
 
-/* Existing navbar styles */
 .navbar {
     position: fixed;
     top: 5px;
     width: 100%;
     z-index: 2;
     border-radius: 10px;
-    background: rgb(255, 255, 255);
-    padding: auto;
+    background: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -40,20 +38,19 @@ body {
     margin: 0.4em;
     display: flex;
     align-items: center;
-    
 }
 
 .logo a {
     margin-left: 10px;
     font-size: 35px;
     font-weight: 600;
-    color: rgb(0, 0, 0);
+    color: #000;
 }
 
 .nav-item {
     list-style: none;
     display: inline-block;
-    justify-content: center
+    justify-content: center;
 }
 
 .nav-item a {
@@ -68,12 +65,10 @@ body {
 }
 
 .nav-button {
-    color: #000000;
+    color: #000;
     font-weight: bold;
     font-size: 15px;
     background-color: var(--uranian-blue);
-    margin-left: 10px;
-    margin-right: 10px;
     margin: 0 10px;
     border: 2px solid black;
     border-radius: 50px;
@@ -125,8 +120,6 @@ body {
     z-index: 1;
 }
 
-
-
 .profile-div {
     margin-right: 15px;
     display: inline-flex;
@@ -138,15 +131,13 @@ body {
 .profile-avatar {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
+    border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
     color: #777;
     background-color: #ccc;
-    border-radius: 50%;
-    /* margin-right: 10px; */
 }
 
 .profile-link {
@@ -161,7 +152,7 @@ body {
 .head-div {
     margin: 85px auto 20px;
     width: fit-content;
-    border-bottom: 3px solid rgb(0, 0, 0);
+    border-bottom: 3px solid #000;
     padding: 5px;
 }
 
@@ -178,7 +169,7 @@ body {
 
 .new-button {
     color: white;
-    margin: 0px 15px;
+    margin: 0 15px;
     font-size: 18px;
     font-weight: bold;
     justify-self: center;
@@ -187,7 +178,7 @@ body {
     border-radius: 50px;
     cursor: pointer;
     background-color: #3c8844;
-    transition: background-color 0.3s ease
+    transition: background-color 0.3s ease;
 }
 
 .new-button:hover {
@@ -228,17 +219,15 @@ body {
     margin: 0 auto;
 }
 
-
 .card-details {
     padding: 20px;
 }
 
 .card-title-div {
     height: 70px;
-    /* width: 310px; */
     overflow: hidden;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .card-title {
@@ -261,7 +250,7 @@ body {
     margin-bottom: 10px;
 }
 
-.card-price span{
+.card-price span {
     font-size: x-large;
     background: linear-gradient(45deg, #3bbb3f, #388e3c, #2e7d32, #144517);
     background-clip: text;
@@ -276,7 +265,6 @@ body {
 }
 
 .card-button {
-    color: black;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -284,7 +272,6 @@ body {
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
 }
 
 .card-button.details {
@@ -293,11 +280,13 @@ body {
 }
 
 .card-button.watchlist {
-    border: 1px solid #000000;
+    border: 1px solid #000;
     background-color: white;
+    color: #000;
 }
 
 .card-button.watchlist:hover {
+    background-color: #3498db;
     color: white;
     padding: 11px 21px;
     border: none;
@@ -315,7 +304,6 @@ body {
     background: linear-gradient(45deg, #ff6f61, #de6262);
 }
 
-/* Styles for the "Sold" tag */
 .card-sold-tag {
     position: absolute;
     top: 10px;
@@ -337,10 +325,10 @@ body {
 }
 
 .form-container {
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 350px;
 }
 
@@ -361,22 +349,11 @@ body {
     transition: border-color 0.4s ease;
 }
 
-.form-container input[type="text"]:focus-visible,
-.form-container input[type="password"]:focus-visible,
-.form-container input[type="email"]:focus-visible {
-    border: none;
-    outline: none;
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="email"]:focus {
     border-bottom: 2px solid #0077ff;
-}
-
-.form-container input[type="password"],
-.form-container input[name="confirmation"] {
-    margin-bottom: 0;
-}
-
-.buttons {
-    display: flex;
-    justify-content: flex-end;    
+    outline: none;
 }
 
 .form-container input[type="submit"] {
@@ -400,22 +377,22 @@ body {
     text-align: center;
 }
 
-
-/* Creating Listing Form */
-
 @media screen and (max-width: 768px) {
     .form2-container {
         width: 90%;
         padding: 20px;
     }
+
     .form2-container .form-layout {
         flex-direction: column;
     }
+
     .s1, .s2 {
         width: 100%;
         margin-right: 0;
         margin-bottom: 20px;
     }
+
     .form-body {
         margin-top: 250px;
     }
@@ -479,17 +456,12 @@ body {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form2-container textarea {
-    width: 90%; 
-    resize: vertical;
-}
-
 .form2-container input[type="submit"] {
-    color: #000000;
+    color: #000;
     font-size: 18px;
     font-weight: 600;
     padding: 10px 50px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid #000;
     border-radius: 20px;
     cursor: pointer;
     background: radial-gradient(circle, #41ff6a, #486d4e);
@@ -502,16 +474,14 @@ body {
     background: radial-gradient(circle, #56ff4d, #005813);
 }
 
-/* Item Section */
 .item-section {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
-    margin: 150px auto;
-    margin-bottom: 70px;
-    background-color: #ffffff;
+    margin: 150px auto 70px;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -533,7 +503,6 @@ body {
     animation: pulse 1s infinite;
 }
 
-/* Pulse animation for attention */
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -545,9 +514,6 @@ body {
         transform: scale(1);
     }
 }
-
-
-
 
 .item-image img {
     max-width: 500px;
@@ -561,7 +527,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Item Info */
 .item-info {
     flex: 2;
     padding: 20px;
@@ -580,7 +545,7 @@ body {
 }
 
 .icon {
-    fill: #000000;
+    fill: #000;
     width: 20px;
     height: 20px;
     padding: 7px;
@@ -589,13 +554,12 @@ body {
 .item-section-buttons {
     display: flex;
     justify-content: space-between;
-
 }
 
 .watchlist-button, .remove-button {
     display: inline-flex;
     align-items: center;
-    color: rgb(255, 255, 255);
+    color: #fff;
     padding: 3px 7px;
     font-size: 14px;
     font-weight: bold;
@@ -653,8 +617,6 @@ body {
     background: rgba(255, 0, 0, 0.15);
 }
 
-
-/* New styles for 'close_bidding' button */
 .close-bidding-button {
     display: inline-flex;
     align-items: center;
@@ -677,7 +639,6 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Description Section */
 .item-description {
     padding: 20px;
     font-size: 16px;
@@ -692,30 +653,24 @@ body {
     color: #515151;
 }
 
-/* Extra Images Section */
 .extra-images {
-    background-color: #dddddd;
     display: flex;
-    flex-wrap: wrap;
-    border-radius: 20px;
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
     gap: 10px;
     margin: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-/* Still width of the image is problem */
 .extra-image {
     height: 300px;
     overflow: hidden;
     transition: transform 0.3s;
-    border: 1px solid rgb(206, 206, 206);
+    border: 1px solid #cecece;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -731,11 +686,10 @@ body {
     transform: scale(1.05);
 }
 
-/* Owner Section */
 .owner-section {
     margin: 20px;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -748,14 +702,13 @@ body {
     display: inline-block;
     text-decoration: underline;
     font-size: 22px;
-    margin-bottom: 15px;
-    margin-top: 0px;
+    margin: 0 0 15px;
     color: #969696;
 }
 
 .owner-section h4 {
     font-size: 18px;
-    margin: 0 0;
+    margin: 0;
     color: #555;
 }
 
@@ -781,7 +734,6 @@ body {
     margin-left: 5px;
 }
 
-/* Bidding Section */
 .bidding-section {
     margin: 20px;
     padding: 20px;
@@ -794,11 +746,9 @@ body {
 
 .bidding-section h3 {
     font-size: 22px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin: 20px 0;
     color: #707070;
 }
-
 
 .bidding-section .price {
     font-size: 28px;
@@ -806,7 +756,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* Bidding Closed Section */
 .bidding-closed {
     text-align: center;
     margin: 20px;
@@ -828,7 +777,6 @@ body {
     color: #333;
 }
 
-
 .bidding-form {
     display: inline-flex;
     align-items: center;
@@ -842,7 +790,6 @@ body {
     font-weight: bold;
     margin-bottom: 15px;
 }
-
 
 .bidding-section .price span {
     color: #d32f2f;
@@ -858,17 +805,16 @@ body {
 
 .bidding-section .price span:hover {
     background-color: #d32f2f;
-    color: #ffffff;
+    color: #fff;
 }
-
 
 .message {
     position: fixed;
     top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 3;
     border-radius: 5px;
-    text-align: center;
-    animation: fadeOut 6s forwards;
     text-align: center;
     font-weight: 600;
     margin: 20px auto;
@@ -905,8 +851,6 @@ body {
     padding: 10px 20px;
 }
 
-
-
 .bidding-section input[type="number"] {
     padding: 15px;
     margin-bottom: 15px;
@@ -924,7 +868,6 @@ body {
 
 .bid-and-top-bidder {
     display: flex;
-    /* justify-content: space-between; */
     margin: 20px;
     padding: 20px;
     background-color: #f9f9f9;
@@ -959,19 +902,11 @@ body {
 
 .top-bidders-section {
     flex: 1;
-    background-color: #f8f9fa;
     padding: 20px;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* display: flex; */
-    /* justify-content: center; */
 }
 
 .top-bidders-section h3 {
@@ -979,7 +914,6 @@ body {
 }
 
 .top-bidders-section ol {
-    /* list-style-type: none; */
     padding: 0;
 }
 
@@ -1001,23 +935,13 @@ body {
     color: #007bff;
 }
 
-/* Comment  */
 .comment-section, .comments-list {
     padding: 20px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
-    margin: 20px;
-    padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-/* .comment-section h3 {
-    font-size: 20px;
-    margin: 0 0 5px;
-} */
 
 .user-info {
     display: flex;
@@ -1035,7 +959,6 @@ body {
     font-size: 15px;
     color: #777;
     background-color: #ccc;
-    border-radius: 50%;
     margin-right: 10px;
 }
 
@@ -1043,7 +966,6 @@ body {
     font-weight: bold;
     color: #555;
 }
-
 
 .comment-form-div {
     display: flex;
@@ -1056,7 +978,7 @@ body {
     width: 100%;
     padding: 10px;
     border: none;
-    border-bottom: 2px solid rgb(173, 173, 173);
+    border-bottom: 2px solid #add7f6ff;
     outline: none;
     box-sizing: border-box;
     font-size: 1em;
@@ -1096,7 +1018,7 @@ body {
 .single-comment {
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -1117,9 +1039,11 @@ body {
         flex-direction: column;
         justify-content: center;
     }
+
     .navdiv {
         flex-direction: column;
     }
+
     .nav-item {
         display: inline-flex;
     }
@@ -1146,7 +1070,7 @@ body {
     padding: 10px;
     border: 1px solid black;
     background-color: #f9f9f9;
-    color: #000000;
+    color: #000;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
@@ -1190,3 +1114,5 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 }
+
+
