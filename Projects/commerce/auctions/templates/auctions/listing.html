@@ -83,7 +83,7 @@
         <h3>Wanna bid on {{ listing.item_name }}</h3>
         <h2 class="price">Current Price: <span>${{ listing.current_price }}</span></h2>
         <div class="bidding-form">
-            <form method="POST" action="{% url 'bid' %}">
+            <form method="POST">
                 {% csrf_token %}
                 <label for="bidding_amount">Bid Amount: </label>
                 <input type="hidden" name="listing_id" value="{{ listing.id }}">
@@ -126,7 +126,7 @@
         <form action="{% url 'add_comment' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="listing_id" value="{{ listing.id }}">
-            <input type="text" name="comment_text" placeholder="Add a public comment..." required autocomplete="off">
+            <textarea name="comment_text" placeholder="Add a public comment..." required autocomplete="off" rows="1"></textarea>
         </div>
         <div class="buttons">
             <button type="submit" class="submit-button">Comment</button>

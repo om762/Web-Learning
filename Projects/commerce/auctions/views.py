@@ -173,6 +173,62 @@ from django.shortcuts import render, get_object_or_404
 from .models import Listing, Bid, ListingImage, Comment, Watchlist
 
 def listing_detail(request, item_id):
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            bidding_amount = request.POST.get("bidding_amount")
+            listing_id = request.POST.get("listing_id")
+            listing = Listing.objects.get(pk=listing_id)
+            images = ListingImage.objects.filter(listing=listing).all()
+            comments = Comment.objects.filter(listing=listing).order_by(F('created_at').desc())
+            watchlist_count = Watchlist.objects.filter(user=request.user).count()
+            top_bids = Bid.objects.filter(listing=int(listing_id)).order_by('-amount')[:5]
+
+            try:
+                bidding_amount = int(bidding_amount)
+            except ValueError:
+                return render(request, "auctions/listing.html", {
+                    "bidding_amount": bidding_amount,
+                    "message": "Invalid bid amount.",
+                    "status" :  "error",
+                    "listing": listing,
+                    "images": images,
+                    "comments": comments,
+                    "watchlist_count": watchlist_count,
+                    "top_bids": top_bids
+                })
+
+            if bidding_amount <= listing.current_price:
+                return render(request, "auctions/listing.html", {
+                    "bidding_amount": bidding_amount,
+                    "message": "Bid must be higher than the current price.",
+                    "status" : "error",
+                    "listing": listing,
+                    "images": images,
+                    "comments":comments,
+                    "watchlist_count": watchlist_count,
+                    "top_bids": top_bids
+                })
+
+            new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
+            new_bid.save()
+
+            # Update the current price of the listing
+            listing.current_price = bidding_amount
+            listing.save()
+            
+            watchlist_count = Watchlist.objects.filter(user=request.user).count()
+            return render(request, "auctions/listing.html", {
+                            "message": "Your bid was successfully placed.",
+                            "status" : "success",
+                            "listing": listing,
+                            "images": images,
+                            "comments": comments,
+                            "watchlist_count":watchlist_count,
+                            "top_bids": top_bids
+                        })
+        else:
+            return redirect(reverse('login'))
+
     listing = get_object_or_404(Listing, pk=item_id)
     images = ListingImage.objects.filter(listing=listing).all()
     comments = Comment.objects.filter(listing=listing).order_by('-created_at')
@@ -193,60 +249,6 @@ def listing_detail(request, item_id):
         "top_bids": top_bids
     })
 
-@login_required(login_url='login')
-def bid(request):
-    if request.method == "POST":
-        bidding_amount = request.POST.get("bidding_amount")
-        listing_id = request.POST.get("listing_id")
-        listing = Listing.objects.get(pk=listing_id)
-        images = ListingImage.objects.filter(listing=listing).all()
-        comments = Comment.objects.filter(listing=listing).order_by(F('created_at').desc())
-        watchlist_count = Watchlist.objects.filter(user=request.user).count()
-        top_bids = Bid.objects.filter(listing=int(listing_id)).order_by('-amount')[:5]
-
-        try:
-            bidding_amount = int(bidding_amount)
-        except ValueError:
-            return render(request, "auctions/listing.html", {
-                "bidding_amount": bidding_amount,
-                "message": "Invalid bid amount.",
-                "status" :  "error",
-                "listing": listing,
-                "images": images,
-                "comments": comments,
-                "watchlist_count": watchlist_count,
-                "top_bids": top_bids
-            })
-
-        if bidding_amount <= listing.current_price:
-            return render(request, "auctions/listing.html", {
-                "bidding_amount": bidding_amount,
-                "message": "Bid must be higher than the current price.",
-                "status" : "error",
-                "listing": listing,
-                "images": images,
-                "comments":comments,
-                "watchlist_count": watchlist_count,
-                "top_bids": top_bids
-            })
-
-        new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
-        new_bid.save()
-
-        # Update the current price of the listing
-        listing.current_price = bidding_amount
-        listing.save()
-        
-        watchlist_count = Watchlist.objects.filter(user=request.user).count()
-        return render(request, "auctions/listing.html", {
-                        "message": "Your bid was successfully placed.",
-                        "status" : "success",
-                        "listing": listing,
-                        "images": images,
-                        "comments": comments,
-                        "watchlist_count":watchlist_count,
-                        "top_bids": top_bids
-                    })
 
 @login_required(login_url='login')
 def add_comment(request):
