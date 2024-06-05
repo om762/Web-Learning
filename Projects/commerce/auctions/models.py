@@ -4,6 +4,7 @@ from django.db import models
 
 class User(AbstractUser):
     id = models.BigAutoField(primary_key=True)
+    watchlist = models.ManyToManyField('Listing', related_name='watched_by', blank=True)
 
 
 class Listing(models.Model):
@@ -12,12 +13,12 @@ class Listing(models.Model):
     description = models.TextField(max_length=1000)
     starting_bid = models.IntegerField()
     current_price = models.IntegerField()
-    category = models.ForeignKey('Category', blank=True, on_delete=models.CASCADE, related_name="items")
+    category = models.ForeignKey('Category', blank=True, null=True, on_delete=models.SET_NULL, related_name="items")
     active = models.BooleanField(default=True)
     winner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='won_listings')
     image_url = models.URLField(blank=True)
 
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_listings')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -61,17 +62,9 @@ class Comment(models.Model):
 
 class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
-    type = models.CharField(max_length=35)
-    image_url = models.URLField()
+    type = models.CharField(max_length=35, unique=True)
+    image_url = models.URLField(null=True)
 
     def __str__(self) -> str:
         return self.type
 
-
-class Watchlist(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='watchlist')
-    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-
-    def __str__(self) -> str:
-        return f"{self.user.username}'s Watchlist"

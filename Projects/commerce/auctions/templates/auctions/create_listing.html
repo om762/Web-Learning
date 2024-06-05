@@ -21,7 +21,7 @@
                         <input type="number" id="startingBid" name="starting_bid" placeholder="Enter starting bid" required>
                         
                         <label for="category">Category</label>
-                        <select id="category" name="category" required>
+                        <select id="category" name="category">
                             <option value="" selected disabled>Select category</option>
                             {% for category in category_list %}
                                 <option value="{{ category.id }}">{{ category.type }}</option>

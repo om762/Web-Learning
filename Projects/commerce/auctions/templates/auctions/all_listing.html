@@ -1,4 +1,5 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
 
 {% block title %}All Listings{% endblock title %}
 
@@ -8,7 +9,7 @@
 </div>
 
 
-{% for listing in all_listings %}
+{% for listing in active_listings %}
 <div class="card">
     {% if not listing.active %}
     <div class="card-sold-tag">Sold</div>
@@ -21,7 +22,7 @@
             <div class="card-title">{{ listing.item_name }}</div>
         </div>
         <div class="card-category">{{ listing.category }}</div>
-        <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
+        <div class="card-price">Current Price: <span>₹{{ listing.current_price }}</span></div>
         <div class="card-buttons">
             <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
             {% if user.is_authenticated %}
@@ -38,5 +39,10 @@
         </div>
     </div>
 </div>
+{% empty %}
+<center>
+    <h3>There is No A Listing Yet</h3>
+    <img width="500px" src="{% static 'auctions/images/nolisting.svg' %}" alt="No Listing has been created yet">
+</center>
 {% endfor %}
 {% endblock %}

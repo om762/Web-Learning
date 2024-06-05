@@ -14,7 +14,7 @@
     </div>
     <div class="item-info">
         <h1>{{ listing.item_name }}</h1>
-        <p class="info">Category: {{ listing.category }} <br>Starting Price: ${{ listing.starting_bid }}</p>
+        <p class="info">Category: {{ listing.category }} <br>Starting Price: ₹{{ listing.starting_bid }}</p>
         <div class="item-section-buttons">
             <form action="{% url 'add_to_watchlist' %}" method="post">
                 {% csrf_token %}
@@ -50,6 +50,7 @@
     </div>
 </div>
 
+{% if images %}
 <div class="extra-images">
     {% for image in images %}
     <div class="extra-image">
@@ -57,6 +58,7 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
 
 <div class="owner-section">
     <div class="owner-details">
@@ -76,12 +78,13 @@
         <div class="{{ status }}">{{ message }}</div>
     </div>
 {% endif %}
+
 <div class="bid-and-top-bidder">
     {% if listing.active %}
-    <div class="bidding-section">
+    <div class="section bidding-section">
         <a name="bid-form" href="#bid-form"></a>
         <h3>Wanna bid on {{ listing.item_name }}</h3>
-        <h2 class="price">Current Price: <span>${{ listing.current_price }}</span></h2>
+        <h2 class="price">Current Price: <span>₹{{ listing.current_price }}</span></h2>
         <div class="bidding-form">
             <form method="POST">
                 {% csrf_token %}
@@ -93,20 +96,20 @@
         </div>
     </div>
     {% else %}
-    <div class="bidding-closed">
+    <div class="section bidding-closed">
         <h3>Bidding for this item is closed.</h3>
-        <h2 class="price">Sold for: <span>${{ listing.current_price }}</span></h2>
+        <h2 class="price">Sold for: <span>₹{{ listing.current_price }}</span></h2>
         <h2 class="price">Sold to: <span>{{ listing.winner }}</span></h2>
     </div>
     {% endif %}
 
-    <div class="top-bidders-section">
+    <div class="section top-bidders-section">
         <h3>Top 5 Bidders</h3>
         <ol>
             {% for bid in top_bids %}
             <li>
                 <span class="bidder-name">{{ bid.bidder }}</span>
-                <span class="bidder-amount">${{ bid.amount }}</span>
+                <span class="bidder-amount">₹{{ bid.amount }}</span>
             </li>
             {% empty %}
             <li>No bids yet.</li>
@@ -114,7 +117,6 @@
         </ol>
     </div>    
 </div>
-
 
 <div class="comment-section">
     <h3>Comment</h3>

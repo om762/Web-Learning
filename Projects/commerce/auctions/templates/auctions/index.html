@@ -1,4 +1,5 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
 
 
 {% block body %}
@@ -20,7 +21,7 @@
             <div class="card-title">{{ listing.item_name }}</div>
         </div>
         <div class="card-category">{{ listing.category }}</div>
-        <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
+        <div class="card-price">Current Price: <span>₹{{ listing.current_price }}</span></div>
         <div class="card-buttons">
             <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
             {% if user.is_authenticated %}
@@ -37,5 +38,10 @@
         </div>
     </div>
 </div>
+{% empty %}
+<center>
+    <h3>There is No Active Listing</h3>
+    <img width="500px" src="{% static 'auctions/images/NotFound.svg' %}" alt="No Listing has been created yet">
+</center>
 {% endfor %}
 {% endblock %}

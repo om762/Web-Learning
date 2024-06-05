@@ -43,7 +43,7 @@
                         <div class="card-title">{{ listing.item_name }}</div>
                     </div>
                     <div class="card-category">{{ listing.category }}</div>
-                    <div class="card-price">Current Price: <span>${{ listing.current_price }}</span></div>
+                    <div class="card-price">Current Price: <span>₹{{ listing.current_price }}</span></div>
                     <div class="card-buttons">
                         <a class="card-button details" href="/listing/{{ listing.id }}">Details</a>
                         {% if user.is_authenticated %}
@@ -82,7 +82,7 @@
                         <div class="card-title">{{ item.item_name }}</div>
                     </div>
                     <div class="card-category">{{ item.category }}</div>
-                    <div class="card-price">Current Price: <span>${{ item.current_price }}</span></div>
+                    <div class="card-price">Current Price: <span₹{{ item.current_price }}</span></div>
                     <div class="card-buttons">
                         <a class="card-button details" href="/listing/{{ item.id }}">Details</a>
                         {% if user.is_authenticated %}
@@ -121,7 +121,7 @@
                         <div class="card-title">{{ won.item_name }}</div>
                     </div>
                     <div class="card-category">{{ won.category }}</div>
-                    <div class="card-price">Winning Price: <span>${{ won.current_price }}</span></div>
+                    <div class="card-price">Winning Price: <span>₹{{ won.current_price }}</span></div>
                     <div class="card-buttons">
                         <a class="card-button details" href="/listing/{{ won.id }}">Details</a>
                     </div>
