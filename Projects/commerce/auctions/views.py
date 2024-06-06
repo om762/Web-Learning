@@ -12,11 +12,11 @@ from .models import *
 
 
 def index(request):
-    watchlist = None
     if request.user.is_authenticated:
         watchlist = request.user.watchlist.all()
         watchlist_count = watchlist.count()
     else:
+        watchlist = None
         watchlist_count = 0
     active_listings = Listing.objects.filter(active=True).order_by(F('created_at').desc())
     return render(request, "auctions/index.html", {
@@ -26,11 +26,11 @@ def index(request):
     })
 
 def all_listings(request):
-    watchlist = None
     if request.user.is_authenticated:
         watchlist = request.user.watchlist.all()
         watchlist_count = watchlist.count()
     else:
+        watchlist = None
         watchlist_count = 0
     all_listings = Listing.objects.all().order_by(F('created_at').desc())
     return render(request, "auctions/all_listing.html", {
@@ -127,7 +127,7 @@ def create_listing(request):
         return HttpResponseRedirect(reverse("index"))
 
     category_list = Category.objects.all()
-    watchlist_count = request.user.watchlist.count() if request.user.is_authenticated else 0
+    watchlist_count = request.user.watchlist.count()
     return render(request, "auctions/create_listing.html", {
         "category_list": category_list,
         "watchlist_count": watchlist_count
@@ -135,20 +135,23 @@ def create_listing(request):
 
 def categories(request):
     categories = Category.objects.all()
+    watchlist_count = request.user.watchlist.count() if request.user.is_authenticated else 0
+
     return render(request, "auctions/categories.html", {
-        "categories": categories
+        "categories": categories,
+        "watchlist_count": watchlist_count
     })
 
 def category(request, type):
     categories = Category.objects.all()
     category = Category.objects.filter(type=type).first()
-    watchlist = None
     if category:
         if request.user.is_authenticated:
             watchlist = request.user.watchlist.all()
             watchlist_count = watchlist.count()
         else:
             watchlist_count = 0
+            watchlist = None
         listings = Listing.objects.filter(category=category)
         return render(request, "auctions/category.html", {
             "listings": listings,
@@ -163,15 +166,21 @@ def category(request, type):
     })
 
 def listing_detail(request, item_id):
+    listing = get_object_or_404(Listing, pk=item_id)
+    images = ListingImage.objects.filter(listing=listing).all()
+    comments = Comment.objects.filter(listing=listing).order_by('-created_at')
+    top_bids = Bid.objects.filter(listing=item_id).order_by('-amount')[:5]
+
+    if request.user.is_authenticated:
+        is_in_watchlist = request.user.watchlist.filter(pk=listing.pk).exists()
+        watchlist_count = request.user.watchlist.count()
+    else:
+        watchlist_count = 0
+        is_in_watchlist = False
+
     if request.method == "POST":
         if request.user.is_authenticated:
             bidding_amount = request.POST.get("bidding_amount")
-            listing_id = request.POST.get("listing_id")
-            listing = Listing.objects.get(pk=listing_id)
-            images = ListingImage.objects.filter(listing=listing).all()
-            comments = Comment.objects.filter(listing=listing).order_by(F('created_at').desc())
-            watchlist_count = request.user.watchlist.count()
-            top_bids = Bid.objects.filter(listing=int(listing_id)).order_by('-amount')[:5]
 
             try:
                 bidding_amount = int(bidding_amount)
@@ -184,7 +193,8 @@ def listing_detail(request, item_id):
                     "images": images,
                     "comments": comments,
                     "watchlist_count": watchlist_count,
-                    "top_bids": top_bids
+                    "top_bids": top_bids,
+                    "is_in_watchlist": is_in_watchlist,
                 })
 
             if bidding_amount <= listing.current_price:
@@ -196,7 +206,8 @@ def listing_detail(request, item_id):
                     "images": images,
                     "comments": comments,
                     "watchlist_count": watchlist_count,
-                    "top_bids": top_bids
+                    "top_bids": top_bids,
+                    "is_in_watchlist": is_in_watchlist,
                 })
 
             new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
@@ -212,21 +223,11 @@ def listing_detail(request, item_id):
                 "images": images,
                 "comments": comments,
                 "watchlist_count": watchlist_count,
-                "top_bids": top_bids
+                "top_bids": top_bids,
+                "is_in_watchlist": is_in_watchlist,
             })
         else:
             return redirect(reverse('login'))
-
-    listing = get_object_or_404(Listing, pk=item_id)
-    images = ListingImage.objects.filter(listing=listing).all()
-    comments = Comment.objects.filter(listing=listing).order_by('-created_at')
-    top_bids = Bid.objects.filter(listing=item_id).order_by('-amount')[:5]
-    is_in_watchlist = False
-    if request.user.is_authenticated:
-        is_in_watchlist = request.user.watchlist.filter(pk=listing.pk).exists()
-        watchlist_count = request.user.watchlist.count()
-    else:
-        watchlist_count = 0
 
     return render(request, "auctions/listing.html", {
         "listing": listing,
@@ -241,7 +242,6 @@ def listing_detail(request, item_id):
 def add_comment(request):
     if request.method == "POST":
         text = request.POST.get("comment_text")
-        print(text)
         listing_id = request.POST.get("listing_id")
         listing = Listing.objects.get(pk=listing_id)
         commenter = request.user
