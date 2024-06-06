@@ -2,7 +2,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import F
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -240,6 +241,7 @@ def listing_detail(request, item_id):
 def add_comment(request):
     if request.method == "POST":
         text = request.POST.get("comment_text")
+        print(text)
         listing_id = request.POST.get("listing_id")
         listing = Listing.objects.get(pk=listing_id)
         commenter = request.user
@@ -303,3 +305,7 @@ def profile_view(request):
         'listings': listings,
         'won_listings': won_listings
     })
+
+
+def page_not_found(request, invalid_path):
+    return HttpResponseNotFound(render(request, "auctions/404.html"))

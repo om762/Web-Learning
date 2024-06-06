@@ -17,4 +17,5 @@ urlpatterns = [
     path("watchlist", views.watchlist, name="watchlist"),
     path("close_bidding", views.close_bidding, name="close_bidding"),
     path("add_comment", views.add_comment, name="add_comment"),
+    path("<str:invalid_path>", views.page_not_found, name="page_not_found")
 ]

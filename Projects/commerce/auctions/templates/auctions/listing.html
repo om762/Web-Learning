@@ -22,7 +22,7 @@
                 {% if is_in_watchlist %}
                     <button type="submit" class="remove-button">
                         <img class="icon" src="{% static 'auctions/images/xmark-solid.svg' %}" alt="">
-                    <span>Remove from Watchlist</span>
+                        <span>Remove from Watchlist</span>
                     </button>
                 {% else %}
                     <button type="submit" class="watchlist-button">
@@ -44,7 +44,7 @@
             {% endif %}
         </div>
         <div class="item-description">
-            <p>{{ listing.description }}</p>
+            <pre><p class="description">{{ listing.description }}</p></pre>
         </div>
         <p>Created On: <span>{{ listing.created_at }}</span></p>
     </div>
@@ -54,7 +54,7 @@
 <div class="extra-images">
     {% for image in images %}
     <div class="extra-image">
-        <img src="{{ image.image_url }}" alt="No Image Found">
+        <img src="{{ image.image_url }}" alt="Extra Image">
     </div>
     {% endfor %}
 </div>
@@ -142,7 +142,7 @@
     {% for comment in comments %}
     <div class="single-comment">
         <p class="commenter">{{ comment.commenter }}</p>
-        <p class="comment-text">{{ comment.text }}</p>
+        <pre style="font: inherit">{{ comment.text }}</p></pre>
     </div>
     {% endfor %}
 </div>

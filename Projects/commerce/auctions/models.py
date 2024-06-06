@@ -63,7 +63,7 @@ class Comment(models.Model):
 class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
     type = models.CharField(max_length=35, unique=True)
-    image_url = models.URLField(null=True)
+    image_url = models.URLField()
 
     def __str__(self) -> str:
         return self.type

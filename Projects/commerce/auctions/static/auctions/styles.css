@@ -648,10 +648,16 @@ body {
     margin-top: 20px;
 }
 
+.item-description pre {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
 .item-info p span {
     font-weight: bold;
     color: #515151;
 }
+
 
 .extra-images {
     display: flex;
@@ -663,7 +669,7 @@ body {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px #0000001a;
 }
 
 .extra-image {
@@ -734,7 +740,6 @@ body {
     margin-left: 5px;
 }
 
-/* Common Styles */
 .section {
     flex: 1;
     margin: 20px;
@@ -745,9 +750,8 @@ body {
     text-align: center;
 }
 
-/* Bidding Section Styles */
 .bidding-section {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-top: 1px solid #ddd;
 }
 
@@ -794,6 +798,49 @@ body {
     color: #fff;
 }
 
+.message {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    max-width: 500px;
+    opacity: 1;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.error {
+    background-color: #ffd7dbc4;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
 .bidding-section input[type="number"] {
     padding: 15px;
     margin-bottom: 15px;
@@ -807,6 +854,17 @@ body {
 .bidding-section input[type="number"]:focus {
     border-color: #007bff;
     outline: none;
+}
+
+.bid-and-top-bidder {
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .bidding-section button {
@@ -851,8 +909,11 @@ body {
 
 /* Top Bidders Section Styles */
 .top-bidders-section {
+    padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .top-bidders-section h3 {
@@ -882,7 +943,6 @@ body {
     color: #007bff;
 }
 
-/* Parent Container */
 .bid-and-top-bidder {
     display: flex;
     flex-wrap: wrap;
