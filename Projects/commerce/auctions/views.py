@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import F
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponseRedirect, Http404
 
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
@@ -10,7 +10,7 @@ from django.urls import reverse
 
 from .models import *
 
-
+# Home Page
 def index(request):
     if request.user.is_authenticated:
         watchlist = request.user.watchlist.all()
@@ -25,6 +25,7 @@ def index(request):
         "watchlist": watchlist
     })
 
+# All Listing Page
 def all_listings(request):
     if request.user.is_authenticated:
         watchlist = request.user.watchlist.all()
@@ -39,6 +40,7 @@ def all_listings(request):
         "watchlist": watchlist
     })
 
+# Login Page 
 def login_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse("index"))
@@ -61,6 +63,7 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
+# Registration Page 
 def register(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse("index"))
@@ -87,6 +90,7 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
+# Create New Listing Page 
 @login_required(login_url='login')
 def create_listing(request):
     if request.method == "POST":
@@ -133,111 +137,106 @@ def create_listing(request):
         "watchlist_count": watchlist_count
     })
 
+# Categories Page
 def categories(request):
     categories = Category.objects.all()
-    watchlist_count = request.user.watchlist.count() if request.user.is_authenticated else 0
-
-    return render(request, "auctions/categories.html", {
+    context = {
         "categories": categories,
-        "watchlist_count": watchlist_count
-    })
+    }
 
+    if request.user.is_authenticated:
+        context["watchlist_count"] = request.user.watchlist.count()
+    else:
+        context["watchlist_count"] = 0
+
+    return render(request, "auctions/categories.html", context)
+
+# Item Of the Category
 def category(request, type):
-    categories = Category.objects.all()
-    category = Category.objects.filter(type=type).first()
-    if category:
-        if request.user.is_authenticated:
-            watchlist = request.user.watchlist.all()
-            watchlist_count = watchlist.count()
-        else:
-            watchlist_count = 0
-            watchlist = None
-        listings = Listing.objects.filter(category=category)
-        return render(request, "auctions/category.html", {
-            "listings": listings,
-            "category": category,
-            "watchlist": watchlist,
-            "watchlist_count": watchlist_count
-        })
+    category = get_object_or_404(Category, type=type)
+    listings = Listing.objects.filter(category=category)
+    context = {
+        "category": category,
+        "listings": listings,
+    }
 
-    return render(request, "auctions/categories.html", {
-        "categories": categories,
-        "watchlist_count": watchlist_count,
-    })
+    if request.user.is_authenticated:
+        watchlist = request.user.watchlist.all()
+        context["watchlist"] = watchlist
+        context["watchlist_count"] = watchlist.count()
+    else:
+        context["watchlist_count"] = 0
 
+    return render(request, "auctions/category.html", context)
+
+# Listing Detail Page
 def listing_detail(request, item_id):
+    print(type(item_id))
+    try:
+        item_id = int(item_id)
+    except ValueError:
+        raise Http404
+
     listing = get_object_or_404(Listing, pk=item_id)
-    images = ListingImage.objects.filter(listing=listing).all()
-    comments = Comment.objects.filter(listing=listing).order_by('-created_at')
-    top_bids = Bid.objects.filter(listing=item_id).order_by('-amount')[:5]
+    images = listing.images.all()
+    comments = listing.comments.order_by('-created_at')
+    top_bids = listing.bids.order_by('-amount')[:5]
+    context = {
+        "listing": listing,
+        "images": images,
+        "comments": comments,
+        "top_bids": top_bids,
+    }
 
     if request.user.is_authenticated:
         is_in_watchlist = request.user.watchlist.filter(pk=listing.pk).exists()
         watchlist_count = request.user.watchlist.count()
-    else:
-        watchlist_count = 0
-        is_in_watchlist = False
+        context.update({
+            "is_in_watchlist": is_in_watchlist,
+            "watchlist_count": watchlist_count,
+        })
 
-    if request.method == "POST":
-        if request.user.is_authenticated:
+        if request.method == "POST":
             bidding_amount = request.POST.get("bidding_amount")
+            if bidding_amount is None:
+                return redirect('listing_detail', item_id=item_id)
 
             try:
                 bidding_amount = int(bidding_amount)
             except ValueError:
-                return render(request, "auctions/listing.html", {
-                    "bidding_amount": bidding_amount,
+                context.update({
                     "message": "Invalid bid amount.",
                     "status": "error",
-                    "listing": listing,
-                    "images": images,
-                    "comments": comments,
-                    "watchlist_count": watchlist_count,
-                    "top_bids": top_bids,
-                    "is_in_watchlist": is_in_watchlist,
                 })
+                return render(request, "auctions/listing.html", context)
 
             if bidding_amount <= listing.current_price:
-                return render(request, "auctions/listing.html", {
-                    "bidding_amount": bidding_amount,
+                context.update({
                     "message": "Bid must be higher than the current price.",
                     "status": "error",
-                    "listing": listing,
-                    "images": images,
-                    "comments": comments,
-                    "watchlist_count": watchlist_count,
-                    "top_bids": top_bids,
-                    "is_in_watchlist": is_in_watchlist,
                 })
+                return render(request, "auctions/listing.html", context)
 
-            new_bid = Bid(amount=bidding_amount, listing=listing, bidder=request.user)
-            new_bid.save()
+            Bid.objects.create(amount=bidding_amount, listing=listing, bidder=request.user)
 
             listing.current_price = bidding_amount
             listing.save()
 
-            return render(request, "auctions/listing.html", {
+            context.update({
                 "message": "Your bid was successfully placed.",
                 "status": "success",
-                "listing": listing,
-                "images": images,
-                "comments": comments,
-                "watchlist_count": watchlist_count,
-                "top_bids": top_bids,
-                "is_in_watchlist": is_in_watchlist,
             })
-        else:
-            return redirect(reverse('login'))
 
-    return render(request, "auctions/listing.html", {
-        "listing": listing,
-        "images": images,
-        "comments": comments,
-        "is_in_watchlist": is_in_watchlist,
-        "watchlist_count": watchlist_count,
-        "top_bids": top_bids
-    })
+    else:
+        context.update({
+            "watchlist_count": 0,
+            "is_in_watchlist": False,
+        })
 
+    return render(request, "auctions/listing.html", context)
+
+
+# Comment Function
 @login_required(login_url='login')
 def add_comment(request):
     if request.method == "POST":
@@ -249,6 +248,7 @@ def add_comment(request):
         new_comment.save()
         return redirect(f'/listing/{listing_id}#comment')
 
+# Watchlist add and remove function
 @login_required(login_url='login')
 @require_POST
 def add_to_watchlist(request):
@@ -263,8 +263,9 @@ def add_to_watchlist(request):
     referer = request.META.get('HTTP_REFERER', '/')
     return redirect(referer)
 
+# Watchlist View Page
 @login_required(login_url='login')
-def watchlist(request):
+def watchlist_view(request):
     listings = request.user.watchlist.all()
     watchlist_count = listings.count()
 
@@ -274,6 +275,7 @@ def watchlist(request):
         "watchlist": listings
     })
 
+# Close Bidding Functions 
 @login_required(login_url='login')
 def close_bidding(request):
     if request.method == "POST":
@@ -292,6 +294,7 @@ def close_bidding(request):
 
         return redirect('listing_detail', item_id=listing_id)
 
+# Profile Page 
 @login_required(login_url='login')
 def profile_view(request):
     user = request.user
@@ -306,6 +309,6 @@ def profile_view(request):
         'won_listings': won_listings
     })
 
-
+# Page Not Found
 def page_not_found(request, invalid_path):
-    return HttpResponseNotFound(render(request, "auctions/404.html"))
+    return render(request, '404.html', status=404)

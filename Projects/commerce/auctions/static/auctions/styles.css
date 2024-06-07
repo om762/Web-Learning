@@ -17,6 +17,7 @@ body {
     text-decoration: none;
 }
 
+/* Navigation bar  */
 .navbar {
     position: fixed;
     top: 5px;
@@ -73,6 +74,24 @@ body {
     border: 2px solid black;
     border-radius: 50px;
     padding: 10px 20px;
+}
+
+.new-button {
+    color: white;
+    margin: 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    justify-self: center;
+    padding: 10px;
+    border: 2px solid #3c8844;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #3c8844;
+    transition: background-color 0.3s ease;
+}
+
+.new-button:hover {
+    background-color: #56bd5e;
 }
 
 .wl-btn {
@@ -149,6 +168,23 @@ body {
     width: fit-content;
 }
 
+@media screen and (max-width: 768px) {
+    .item-info {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .navdiv {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        display: inline-flex;
+    }
+}
+
+
+/* Page Heading  */
 .head-div {
     margin: 85px auto 20px;
     width: fit-content;
@@ -167,24 +203,8 @@ body {
     letter-spacing: 2px;
 }
 
-.new-button {
-    color: white;
-    margin: 0 15px;
-    font-size: 18px;
-    font-weight: bold;
-    justify-self: center;
-    padding: 10px;
-    border: 2px solid #3c8844;
-    border-radius: 50px;
-    cursor: pointer;
-    background-color: #3c8844;
-    transition: background-color 0.3s ease;
-}
 
-.new-button:hover {
-    background-color: #56bd5e;
-}
-
+/* Product Card  */
 .card {
     display: inline-block;
     justify-content: center;
@@ -316,6 +336,7 @@ body {
     font-weight: bold;
 }
 
+/* Login and register form  */
 .form-body {
     margin: 0;
     display: flex;
@@ -398,6 +419,7 @@ body {
     }
 }
 
+/* Create New Listing Form  */
 .form2-container {
     background-color: whitesmoke;
     border-radius: 15px;
@@ -474,6 +496,10 @@ body {
     background: radial-gradient(circle, #56ff4d, #005813);
 }
 
+
+/* Listing Page(Detail Page) */
+
+/* Item Sections  */
 .item-section {
     position: relative;
     display: flex;
@@ -658,7 +684,7 @@ body {
     color: #515151;
 }
 
-
+/* Extra Images Sections */
 .extra-images {
     display: flex;
     flex-wrap: wrap;
@@ -692,6 +718,8 @@ body {
     transform: scale(1.05);
 }
 
+
+/* Owner Section */
 .owner-section {
     margin: 20px;
     padding: 20px;
@@ -740,6 +768,53 @@ body {
     margin-left: 5px;
 }
 
+
+/* Bidding Message (Notification) */
+.message {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    max-width: 500px;
+    opacity: 1;
+    animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.error {
+    background-color: #ffd7dbc4;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+
+/* Bidding Section  */
 .section {
     flex: 1;
     margin: 20px;
@@ -798,49 +873,6 @@ body {
     color: #fff;
 }
 
-.message {
-    position: fixed;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: 600;
-    margin: 20px auto;
-    max-width: 500px;
-    opacity: 1;
-    animation: fadeOut 3s forwards;
-}
-
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-.error {
-    background-color: #ffd7dbc4;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    padding: 10px 20px;
-}
-
-.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-    border-radius: 5px;
-    padding: 10px 20px;
-}
-
 .bidding-section input[type="number"] {
     padding: 15px;
     margin-bottom: 15px;
@@ -890,6 +922,7 @@ body {
     transform: translateY(0);
 }
 
+
 /* Bidding Closed Section Styles */
 .bidding-closed {
     background-color: #ffe6e6;
@@ -907,7 +940,7 @@ body {
     color: #333;
 }
 
-/* Top Bidders Section Styles */
+/* Top Bidders Section */
 .top-bidders-section {
     padding: 20px;
     background-color: #fff;
@@ -949,6 +982,7 @@ body {
     justify-content: space-between;
 }
 
+/* Comment Sections  */
 
 .comment-section, .comments-list {
     margin: 20px;
@@ -959,6 +993,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Comment Form */
 .user-info {
     display: flex;
     align-items: center;
@@ -1007,7 +1042,7 @@ body {
     border-bottom: 2px solid #0051bc;
 }
 
-.buttons {
+.comment-button-div {
     display: flex;
     justify-content: flex-end;    
 }
@@ -1032,6 +1067,7 @@ body {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Public Comments */
 .comments-list {
     margin-top: 20px;
 }
@@ -1055,21 +1091,7 @@ body {
     color: #555;
 }
 
-@media screen and (max-width: 768px) {
-    .item-info {
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .navdiv {
-        flex-direction: column;
-    }
-
-    .nav-item {
-        display: inline-flex;
-    }
-}
-
+/* Profile Page */
 .profile-container {
     width: 80%;
     margin: 50px auto;
@@ -1135,5 +1157,3 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 }
-
-

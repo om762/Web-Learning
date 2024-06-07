@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import handler404
 
 from . import views
 
@@ -14,8 +15,10 @@ urlpatterns = [
     path("category", views.categories, name="categories"),
     path("category/<str:type>", views.category, name="category"),
     path("add_to_watchlist", views.add_to_watchlist, name="add_to_watchlist"),
-    path("watchlist", views.watchlist, name="watchlist"),
+    path("watchlist", views.watchlist_view, name="watchlist"),
     path("close_bidding", views.close_bidding, name="close_bidding"),
     path("add_comment", views.add_comment, name="add_comment"),
     path("<str:invalid_path>", views.page_not_found, name="page_not_found")
 ]
+
+handler404 = 'auctions.views.page_not_found'
