@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #007BFF;
+    --secondary-color: #333;
+    --background-color: #f7f7f7;
+    --font-family: 'Roboto', Arial, sans-serif;
+    --padding: 2em;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --transition-duration: 0.3s;
+    --gradient: linear-gradient(135deg, #007BFF 0%, #00d4ff 100%);
+    --max-width: 1200px;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    transition: background-color var(--transition-duration);
+}
+
+header {
+    background: var(--gradient);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: var(--box-shadow);
+    transition: background var(--transition-duration);
+}
+
+header:hover {
+    background: linear-gradient(135deg, #00d4ff 0%, #007BFF 100%);
+}
+
+main {
+    margin: 2em;
+    width: 30%;
+    max-width: var(--max-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    animation: fadeIn 1s ease-in-out;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    display: inline-flex;
+    margin-bottom: 1em;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+input,
+select {
+    /* width: 100%; */
+    display: inline-block;
+    padding: 0.8em;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#result {
+    margin-top: 1em;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: var(--padding);
+    margin: 1em 0;
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
