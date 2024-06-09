@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const amountInput = document.getElementById('amount');
     const resultSection = document.getElementById('result');
     
-    // Fetch and populate currency dropdowns
+    
     try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD'); // Use your preferred base currency
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
 
@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Add event listeners for real-time conversion
     amountInput.addEventListener('input', convertCurrency);
     fromCurrencySelect.addEventListener('change', convertCurrency);
     toCurrencySelect.addEventListener('change', convertCurrency);

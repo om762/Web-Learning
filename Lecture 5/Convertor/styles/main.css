@@ -99,7 +99,7 @@ select:focus {
 }
 
 #result {
-    margin-top: 1em;
+    margin: 1em 0;
     font-size: 1.5em;
     color: var(--primary-color);
     font-weight: bold;
