@@ -171,7 +171,6 @@ def category(request, type):
 
 # Listing Detail Page
 def listing_detail(request, item_id):
-    print(type(item_id))
     try:
         item_id = int(item_id)
     except ValueError:
