@@ -7,6 +7,7 @@ import csv
 # Create your views here.
 def index(request):
     date = datetime.today().date()
+    date = datetime(2024, 8, 19).date()
     weekDay = date.strftime("%A")
     holiday = False
     dueTo = None
@@ -26,7 +27,7 @@ def index(request):
 
 def sageHoliday(curr_date):
     dueTo = None
-    with open("C:/Users/omprakash/Desktop/JARVIS/Web.Py/Lecture 3/DJ/isholiday/holidays_in_sage.csv", "r") as f:
+    with open("isholiday/holidays_in_sage.csv", "r") as f:
         
         reader = csv.reader(f)
         next(reader)
