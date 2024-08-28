@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>State Of Matters</title>
+
+    <style>
+        #stateofmatter {
+            text-align: left;
+            display:block;
+        }
+    </style>
+
+    <script>
+
+        function loadState(state) {
+            fetch(`/states/${state}`)
+            .then(response => response.text())
+            .then(text => {
+                console.log(text);
+                document.querySelector("#stateofmatter").innerHTML = text;
+            })
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll("button").forEach(button => {
+                button.onclick = function() {
+                    loadState(this.dataset.state)
+                }
+            })
+        })
+
+    </script>
+
+</head>
+
+<body>
+
+    <center>
+        <h1>State Of Matters</h1>
+        <p>There are three states of matters</p>
+        <button data-state="solid">solid</button>
+        <button data-state="liquid">liquid</button>
+        <button data-state="gas">gas</button>
+        <div id="stateofmatter"></div>
+    </center>
+
+</body>
+</html>
