@@ -13,6 +13,11 @@
 
     <script>
 
+        window.onpopstate = function(event) {
+            console.log(event.state.stateofmatter);
+            loadState(event.state.stateofmatter);
+        }
+
         function loadState(state) {
             fetch(`/states/${state}`)
             .then(response => response.text())
@@ -25,7 +30,9 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll("button").forEach(button => {
                 button.onclick = function() {
-                    loadState(this.dataset.state)
+                    const stateofmatter = this.dataset.state;
+                    history.pushState({stateofmatter:stateofmatter,}, "", `section-${stateofmatter}`)
+                    loadState(this.dataset.state);
                 }
             })
         })
