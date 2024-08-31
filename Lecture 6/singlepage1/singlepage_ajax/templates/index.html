@@ -28,6 +28,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
+            history.pushState({stateofmatter:"home",}, "", "/")
             document.querySelectorAll("button").forEach(button => {
                 button.onclick = function() {
                     const stateofmatter = this.dataset.state;

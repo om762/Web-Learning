@@ -15,6 +15,8 @@ state_of_matters = {
 }
 
 def state_response(request, state_of_matter):
+    if state_of_matter == "home":
+        return HttpResponse("")
     if state_of_matter in state_of_matters.keys():
         return HttpResponse(state_of_matters[state_of_matter])
     else:
