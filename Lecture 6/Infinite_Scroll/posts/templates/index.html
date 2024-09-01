@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scroll</title>
+
+    <style>
+
+        #posts {
+            margin: 10px;
+        }
+
+        .post {
+            background-color: greenyellow;
+            width: 100%;
+            height: 90px;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-family: cursive;
+        }
+
+    </style>
+
+    <script>
+
+        // The first post of page will be 1
+        let counter = 1;
+
+        // Number of posts to be load at a time
+        const quantity = 10;
+
+        // When DOM content is loaded lets first load the first 20 page
+        document.addEventListener("DOMContentLoaded", load());
+
+        // load when reaches the end of page
+        window.onscroll = () => {
+            if (window.scrollY + window.innerHeight >= document.body.offsetHeight){
+                load();
+            }
+        };
+
+        // Let define the load function
+        function load() {
+
+            let start = counter;
+            let end = start + quantity - 1;
+            counter = end + 1;
+
+            fetch(`/posts?start=${start}&end=${end}`)
+            .then(response => response.json())
+            .then(data => {
+                data.posts.forEach(add_post);
+            })
+        };
+
+        // Add new Post
+        function add_post(content) {
+            const post = document.createElement("div");
+            post.className = "post";
+            post.innerHTML = content;
+
+            document.querySelector("#posts").append(post);
+        };
+
+    </script>
+</head>
+<body>
+    <div id="posts"></div>
+</body>
+</html>

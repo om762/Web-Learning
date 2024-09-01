@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from time import sleep
 
 # Create your views here.
 def index(request):
@@ -7,10 +8,12 @@ def index(request):
 
 def posts(request):
     start = int(request.GET.get("start") or 0)
-    end = int(request.GET.get("end") or (start + 10))
+    end = int(request.GET.get("end") or 10)
+    
+    sleep(1)
     
     new_posts = []
-    for i in range(start, end):
+    for i in range(start, end + 1):
         new_posts.append(f"Post #{i}")
     
     return JsonResponse({
