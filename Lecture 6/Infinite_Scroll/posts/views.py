@@ -7,10 +7,10 @@ def index(request):
     return render(request, "index.html")
 
 def posts(request):
-    start = int(request.GET.get("start") or 0)
+    start = int(request.GET.get("start") or 1)
     end = int(request.GET.get("end") or 10)
     
-    sleep(1)
+    sleep(2)
     
     new_posts = []
     for i in range(start, end + 1):

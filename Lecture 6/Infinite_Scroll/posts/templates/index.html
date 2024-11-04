@@ -27,29 +27,31 @@
 
     <script>
 
-        // The first post of page will be 1
+        // Start with first post
         let counter = 1;
 
-        // Number of posts to be load at a time
+        // Load posts 10 at a time
         const quantity = 10;
 
-        // When DOM content is loaded lets first load the first 20 page
-        document.addEventListener("DOMContentLoaded", load());
+        // When DOM loads, render the first 20 posts
+        document.addEventListener('DOMContentLoaded', load);
 
-        // load when reaches the end of page
+        // If scrolled to bottom, load the next 20 posts
         window.onscroll = () => {
-            if (window.scrollY + window.innerHeight >= document.body.offsetHeight){
+            if (window.innerHeight + window.scrollY > document.body.offsetHeight) {
                 load();
             }
         };
 
-        // Let define the load function
+        // Load next set of posts
         function load() {
 
-            let start = counter;
-            let end = start + quantity - 1;
+            // Set start and end post numbers, and update counter
+            const start = counter;
+            const end = start + quantity - 1;
             counter = end + 1;
 
+            // Get new posts and add posts
             fetch(`/posts?start=${start}&end=${end}`)
             .then(response => response.json())
             .then(data => {
@@ -57,13 +59,16 @@
             })
         };
 
-        // Add new Post
-        function add_post(content) {
-            const post = document.createElement("div");
-            post.className = "post";
-            post.innerHTML = content;
+        // Add a new post with given contents to DOM
+        function add_post(contents) {
 
-            document.querySelector("#posts").append(post);
+            // Create new post
+            const post = document.createElement('div');
+            post.className = 'post';
+            post.innerHTML = contents;
+
+            // Add post to DOM
+            document.querySelector('#posts').append(post);
         };
 
     </script>
