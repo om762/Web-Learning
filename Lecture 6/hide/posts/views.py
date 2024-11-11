@@ -10,7 +10,7 @@ def posts(request):
     start = int(request.GET.get("start") or 1)
     end = int(request.GET.get("end") or 10)
     
-    sleep(2)
+    sleep(0.5)
     
     new_posts = []
     for i in range(start, end + 1):
