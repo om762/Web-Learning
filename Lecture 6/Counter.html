@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Hello</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+
+        function Counter(props) {
+            const [count, setCount] = React.useState(0);
+
+            function updateCount(){
+                setCount(count+1);
+            }
+
+            return (
+                <>
+                    <div>{count}</div> 
+                    <button onClick={updateCount}>Count</button>
+                </>
+            )
+        }
+
+        function App() {
+            return (
+            <div>
+                <Counter/>
+            </div>
+            );
+        }
+
+        ReactDOM.render(<App/>, document.querySelector('#app'));
+    </script>
+</body>
+</html>
