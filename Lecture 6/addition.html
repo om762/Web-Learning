@@ -1,38 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
+        /* General App Styling */
+        body {
+            background: linear-gradient(135deg, #c3ecfd, #99abae);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
         #app {
             text-align: center;
-            font-family: sans-serif;
         }
 
+        /* Animation for problem bounce */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Winning animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        /* Styling for problem text */
         #problem {
             font-size: 72px;
+            margin: 20px;
+            animation: bounce 1s infinite;
+            transition: color 0.3s;
         }
 
         .incorrect {
-            color: red;
+            color: #ff4d4d;
         }
 
+        input {
+            font-family: monospace;
+            font-size: 25px;
+            padding: 10px 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #3c3c3c;
+            border-radius: 7px;
+            border: 1px solid #CFD8DC;
+            box-sizing: border-box;
+            transition: padding-left 0.4s, box-shadow 0.3s, transform 0.3s;
+        }
+
+        input:hover {
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.7);
+            transform: scale(1.05);
+        }
+
+        input:focus-visible {
+            border: 3px solid #a0c6ff;
+            box-shadow: 0 0 5px rgba(156, 195, 255, 0.5);
+            background-color: #E3F2FD;
+            outline: none;
+            padding: 8px 18px;
+        }
+
+        /* Score styling with smooth color transition */
+        #score {
+            margin: 10px;
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(255, 187, 0);
+            transition: color 0.3s;
+        }
+
+        /* Winner styling with pulse animation */
         #winner {
             font-size: 72px;
             color: green;
+            animation: pulse 1s infinite;
+        }
+
+        #restart {
+            font-size: 10px;
+            border-radius: 50px;
+            padding: 5px;
+            background-color: green;
+        }
+
+        /* Score bar container */
+        #score-bar-container {
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        /* Score bar */
+        #score-bar {
+            height: 100%;
+            background-color: rgb(255, 187, 0);
+            width: 0;
+            transition: width 0.3s;
         }
 
     </style>
-    <title>Addition</title>
+    <title>Stylish Addition Game</title>
 </head>
 <body>
     <div id="app"></div>
 
     <script type="text/babel">
-
         function Addition() {
-
             const [state, setState] = React.useState({
                 num1: Math.ceil(Math.random() * 10),
                 num2: Math.ceil(Math.random() * 10),
@@ -45,7 +143,17 @@
                 setState({
                     ...state,
                     response: event.target.value
-                })
+                });
+            }
+
+            function restart() {
+                setState({
+                    num1: Math.ceil(Math.random() * 10),
+                    num2: Math.ceil(Math.random() * 10),
+                    response: "",
+                    score: 0,
+                    incorrect: false
+                });
             }
 
             function inputKeyPress(event) {
@@ -57,45 +165,57 @@
                             num1: Math.ceil(Math.random() * 10),
                             num2: Math.ceil(Math.random() * 10),
                             score: state.score + 1,
-                            response:"",
+                            response: "",
                             incorrect: false
                         });
-                    }
-                    else {
+                    } else {
                         setState({
                             ...state,
                             score: state.score - 1,
                             response: "",
                             incorrect: true
                         });
-                    }  
+                    }
                 }
             }
 
-            if (state.score == 10) {
+            if (state.score === 1) {
                 return (
+                    <>
                     <div id="winner">
                         You Win!
                     </div>
-                )
+                    <button onClick={restart} id="restart">Restart</button>
+                    </>
+                );
             }
 
             return (
-                    <div>
-                        <div id="problem" className={state.incorrect ? "incorrect" : ""} >{state.num1} + {state.num2}</div>
-                        <input autoFocus={true} onKeyPress={inputKeyPress} onChange={updateResponse} value={state.response}/>
-                        <div>Score: {state.score}</div>
+                <div>
+                    <div id="problem" className={state.incorrect ? "incorrect" : ""}>
+                        {state.num1} + {state.num2}
                     </div>
-            )
+                    <input
+                        autoFocus={true}
+                        onKeyPress={inputKeyPress}
+                        onChange={updateResponse}
+                        value={state.response}
+                    />
+                    <div id="score">Score: {state.score}</div>
+
+                    {/* Score Bar */}
+                    <div id="score-bar-container">
+                        <div id="score-bar" style={{ width: `${(state.score / 10) * 100}%` }}></div>
+                    </div>
+                </div>
+            );
         }
 
         function App() {
-            return (
-                <Addition/>
-            )
+            return <Addition />;
         }
 
-        ReactDOM.render(<App/>, document.querySelector('#app'));
+        ReactDOM.render(<App />, document.querySelector('#app'));
     </script>
 </body>
 </html>
