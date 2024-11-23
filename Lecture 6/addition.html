@@ -51,11 +51,11 @@
             animation: bounce 1s infinite;
             transition: color 0.3s;
         }
-
+    
         .incorrect {
             color: #ff4d4d;
         }
-
+    
         input {
             font-family: monospace;
             font-size: 25px;
@@ -68,12 +68,12 @@
             box-sizing: border-box;
             transition: padding-left 0.4s, box-shadow 0.3s, transform 0.3s;
         }
-
+    
         input:hover {
             box-shadow: 0 0 15px rgba(100, 181, 246, 0.7);
             transform: scale(1.05);
         }
-
+    
         input:focus-visible {
             border: 3px solid #a0c6ff;
             box-shadow: 0 0 5px rgba(156, 195, 255, 0.5);
@@ -81,7 +81,7 @@
             outline: none;
             padding: 8px 18px;
         }
-
+    
         /* Score styling with smooth color transition */
         #score {
             margin: 10px;
@@ -90,21 +90,51 @@
             color: rgb(255, 187, 0);
             transition: color 0.3s;
         }
-
+    
         /* Winner styling with pulse animation */
         #winner {
             font-size: 72px;
             color: green;
             animation: pulse 1s infinite;
         }
-
+    
+        /* Restart button styling */
         #restart {
-            font-size: 10px;
-            border-radius: 50px;
-            padding: 5px;
-            background-color: green;
+            font-size: 18px;
+            padding: 10px 25px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            outline: none;
         }
-
+    
+        /* Hover effect */
+        #restart:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+    
+        /* Focus effect */
+        #restart:focus-visible {
+            background-color: #218838;
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+            outline: none;
+        }
+    
+        /* Active state (when clicked) */
+        #restart:active {
+            background-color: #1e7e34;
+            transform: scale(1);
+        }
+    
         /* Score bar container */
         #score-bar-container {
             width: 100%;
@@ -114,7 +144,7 @@
             margin: 20px 0;
             overflow: hidden;
         }
-
+    
         /* Score bar */
         #score-bar {
             height: 100%;
@@ -122,9 +152,9 @@
             width: 0;
             transition: width 0.3s;
         }
-
     </style>
-    <title>Stylish Addition Game</title>
+    
+    <title>Addition Game</title>
 </head>
 <body>
     <div id="app"></div>
@@ -179,7 +209,7 @@
                 }
             }
 
-            if (state.score === 1) {
+            if (state.score === 10) {
                 return (
                     <>
                     <div id="winner">
